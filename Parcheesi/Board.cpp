@@ -28,6 +28,13 @@ void Board::movePawn(int diceRoll, int endingPosition, Pawn *pawn) {
 }
 
 bool Board::checkCapture(int position) {
+
+    // In special spaces, we can have more than one pawn.
+    for (int i = 0; i < 12; i++) {
+        if (specialSpaces[i] == position)
+            return false;
+    }
+    
     return this->board[position].pawnList->getFirst()->getNext() != 0;
 }
 

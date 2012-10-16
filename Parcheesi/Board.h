@@ -5,7 +5,7 @@ class Board {
     private:
         Player* player;
         BoardSpace* board = new BoardSpace[BoardSize];
-        int specialPositions[12] = { 6, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68 };
+        int specialSpaces[12] = { 6, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68 };
     public:
         static const int BoardSize = 69;
         static const int BoardEndPosition = -8;
