@@ -1,7 +1,10 @@
-//
-//  Main.cpp
-//  Parcheesi
-//
-//  Created by Bernardo Botelho on 10/15/12.
-//  Copyright (c) 2012 Computer Graphics. All rights reserved.
-//
+#include "Parcheesi.h"
+
+int main( int argc, const char* argv[] )
+{
+    Parcheesi *parcheesi = new Parcheesi();
+    
+    parcheesi->run();
+    
+    return 0;
+}
