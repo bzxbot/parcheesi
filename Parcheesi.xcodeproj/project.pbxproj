@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3EF162CF57E00470DCD /* Main.cpp */; };
+		D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F2162CF6FC00470DCD /* Player.cpp */; };
+		D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F5162CF75800470DCD /* Pawn.cpp */; };
 		D180BF06162CECB900AF873D /* Parcheesi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D180BF05162CECB900AF873D /* Parcheesi.1 */; };
 		D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0C162CECDF00AF873D /* Parcheesi.cpp */; };
 		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
@@ -28,6 +30,10 @@
 
 /* Begin PBXFileReference section */
 		D12DD3EF162CF57E00470DCD /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
+		D12DD3F2162CF6FC00470DCD /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		D12DD3F3162CF6FC00470DCD /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D12DD3F5162CF75800470DCD /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
+		D12DD3F6162CF75800470DCD /* Pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pawn.h; sourceTree = "<group>"; };
 		D180BEFF162CECB900AF873D /* Parcheesi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Parcheesi; sourceTree = BUILT_PRODUCTS_DIR; };
 		D180BF05162CECB900AF873D /* Parcheesi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Parcheesi.1; sourceTree = "<group>"; };
 		D180BF0C162CECDF00AF873D /* Parcheesi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parcheesi.cpp; sourceTree = "<group>"; };
@@ -72,6 +78,10 @@
 				D180BF0F162CECEC00AF873D /* Board.cpp */,
 				D180BF10162CECEC00AF873D /* Board.h */,
 				D12DD3EF162CF57E00470DCD /* Main.cpp */,
+				D12DD3F2162CF6FC00470DCD /* Player.cpp */,
+				D12DD3F3162CF6FC00470DCD /* Player.h */,
+				D12DD3F5162CF75800470DCD /* Pawn.cpp */,
+				D12DD3F6162CF75800470DCD /* Pawn.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -130,6 +140,8 @@
 				D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */,
 				D180BF11162CECEC00AF873D /* Board.cpp in Sources */,
 				D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */,
+				D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */,
+				D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
