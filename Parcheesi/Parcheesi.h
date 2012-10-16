@@ -7,11 +7,12 @@ class Parcheesi {
         Player* firstPlayer;
         Player* humanPlayer;
         Player* currentPlayer;
+        int previousRoll = 2 ;
         void turn();
         bool isGameOver();
         void gameOver();
+        int diceRoll();
         int nextPawnPosition(int currentPosition, int diceRoll, int endingPosition);
-        int checkCapture(int position);
     public:
         Parcheesi();
         void run();

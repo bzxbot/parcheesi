@@ -2,5 +2,5 @@
 
 class BoardSpace {
     public:
-        PawnList* pawnList;
+        PawnList* pawnList = new PawnList();
 };

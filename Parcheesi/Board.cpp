@@ -1,25 +1,71 @@
 #include "Board.h"
+#include "iostream"
 
 Board::Board() {
 }
 
 void Board::draw() {
-    
+    // Here goes the drawing sequence.
 }
 
-void Board::movePawn(int position, Pawn *pawn) {
+void Board::movePawn(int diceRoll, int endingPosition, Pawn *pawn) {
     int oldPosition = pawn->getPosition();
-    int newPosition = 0;//this->nextPawnPosition();
-
-    this->board[position].pawnList->add(new PawnNode(pawn));
+    int newPosition = this->nextPawnPosition(diceRoll, oldPosition, endingPosition);
+    
     pawn->setPosition(newPosition);
     
-    if (checkCapture(newPosition)) {
-        // new position.
-        this->movePawn(position, pawn);
+    if (newPosition > 0) {
+    
+        this->board[newPosition].pawnList->add(new PawnNode(pawn));
+    
+        if (checkCapture(newPosition)) {
+            this->movePawn(20, endingPosition, pawn);
+            PawnNode* captured = this->board[newPosition].pawnList->getFirst();
+            captured->getPawn()->setPosition(Nest);
+            this->board[newPosition].pawnList->remove(this->board[newPosition].pawnList->getFirst());
+        }
     }
 }
 
-//bool Board::checkCapture(int position) {
-  //  return 0;
-//}
+bool Board::checkCapture(int position) {
+    return this->board[position].pawnList->getFirst()->getNext() != 0;
+}
+
+int Board::nextPawnPosition(int diceRoll, int currentPosition, int endingPosition) {
+    int nest = 0;
+    int end = -8;
+    int boardEnd = 68;
+    
+    if (currentPosition > nest) {
+        
+        bool end = false;
+        
+        for(int i = 1; i <= diceRoll; i++) {
+            if (currentPosition + i == endingPosition) {
+                end = true;
+                break;
+            }
+        }
+        
+        if (end) {
+            int remaining = endingPosition - currentPosition;
+            return remaining - diceRoll;
+        } else {
+            int position = currentPosition + diceRoll;
+            
+            if (position > boardEnd)
+                position = position - boardEnd;
+            
+            return position;
+        }
+        
+    } else {
+        
+        int position = currentPosition - diceRoll;
+        
+        if (position < end)
+            position = end;
+        
+        return position;
+    }
+}

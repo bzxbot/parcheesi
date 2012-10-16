@@ -5,15 +5,20 @@ Parcheesi::Parcheesi() {
     board = new Board();
     
     // TODO: Randomize the players.
-    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
-    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 39, 34));
-    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
-    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
+//    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
+//    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 39, 34));
+//    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
+//    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
+
+    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 20, 15));
+    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 26, 15));
     
     firstPlayer->setNextPlayer(secondPlayer);
-    secondPlayer->setNextPlayer(thirdPlayer);
-    thirdPlayer->setNextPlayer(forthPlayer);
-    forthPlayer->setNextPlayer(firstPlayer);
+//    secondPlayer->setNextPlayer(thirdPlayer);
+//    thirdPlayer->setNextPlayer(forthPlayer);
+//    forthPlayer->setNextPlayer(firstPlayer);
+    secondPlayer->setNextPlayer(firstPlayer);
+    
     
     this->firstPlayer = firstPlayer;
     this->currentPlayer = this->firstPlayer;
@@ -23,7 +28,7 @@ Parcheesi::Parcheesi() {
 }
 
 void Parcheesi::turn() {
-    int diceRoll = 5; // Roll dice.
+    int diceRoll = this->diceRoll(); // Roll dice.
     int canAddNewPawn = 5;
     int nest = 0;
     int end = -8;
@@ -64,20 +69,23 @@ void Parcheesi::turn() {
     
     // For now, always selects the first pawn in the PawnList.
     
-    Pawn* pawnToPlay = pawnList->getFirst()->getPawn();
+    Pawn* pawnToPlay;
     
-    if (pawnToPlay->getPosition() == nest) {
-        pawnToPlay->setPosition(this->currentPlayer->getPlayerColor()->getStartingPosition());
-    } else {
-        int position = this->nextPawnPosition(pawnToPlay->getPosition(), diceRoll, this->currentPlayer->getPlayerColor()->getEndingPosition());
-        position = this->checkCapture(position);
-        pawnToPlay->setPosition(position);
-        board->movePawn(position, pawnToPlay);
+    if (pawnList->getFirst() != 0) {
+
+        pawnToPlay = pawnList->getFirst()->getPawn();
+    
+        if (pawnToPlay->getPosition() == nest) {
+            pawnToPlay->setPosition(this->currentPlayer->getPlayerColor()->getStartingPosition());
+        } else {
+            board->movePawn(diceRoll, this->currentPlayer->getPlayerColor()->getEndingPosition(), pawnToPlay);
+        }
+        
+        std::cout << pawnToPlay->getPosition() << "\n";
+
     }
     
     this->currentPlayer = this->currentPlayer->getNextPlayer();
-    
-    std::cout << pawnToPlay->getPosition() << "\n";
 }
 
 void Parcheesi::run() {
@@ -100,42 +108,12 @@ void Parcheesi::gameOver() {
     
 }
 
-int Parcheesi::nextPawnPosition(int currentPosition, int diceRoll, int endingPosition) {
-    int nest = 0;
-    int end = -8;
-    int boardEnd = 68;
-    
-    if (currentPosition > nest) {
-        
-        bool end = false;
-        
-        for(int i = 1; i <= diceRoll; i++) {
-            if (currentPosition + i == endingPosition) {
-                end = true;
-                break;
-            }
-        }
-        
-        if (end) {
-            int remaining = endingPosition - currentPosition;
-            return remaining - diceRoll;
-        } else {
-            int position = currentPosition + diceRoll;
-            
-            if (position > boardEnd)
-                position = position - boardEnd;
-            
-            return position;
-        }
-        
+int Parcheesi::diceRoll() {
+    if (previousRoll == 2) {
+        previousRoll = 4;
     } else {
-        
-        int position = currentPosition - diceRoll;
-        
-        if (position < end)
-            position = end;
-        
-        return position;
+        previousRoll = 2;
     }
     
+    return previousRoll;
 }
