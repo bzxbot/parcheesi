@@ -10,6 +10,10 @@
 		D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3EF162CF57E00470DCD /* Main.cpp */; };
 		D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F2162CF6FC00470DCD /* Player.cpp */; };
 		D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F5162CF75800470DCD /* Pawn.cpp */; };
+		D12DD3FA162D016200470DCD /* PlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F8162D016200470DCD /* PlayerColor.cpp */; };
+		D12DD3FD162D0C8900470DCD /* PawnList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FB162D0C8900470DCD /* PawnList.cpp */; };
+		D12DD400162D0CAB00470DCD /* PawnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */; };
+		D12DD403162D2AD300470DCD /* BoardSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD401162D2AD300470DCD /* BoardSpace.cpp */; };
 		D180BF06162CECB900AF873D /* Parcheesi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D180BF05162CECB900AF873D /* Parcheesi.1 */; };
 		D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0C162CECDF00AF873D /* Parcheesi.cpp */; };
 		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
@@ -34,6 +38,14 @@
 		D12DD3F3162CF6FC00470DCD /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		D12DD3F5162CF75800470DCD /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
 		D12DD3F6162CF75800470DCD /* Pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pawn.h; sourceTree = "<group>"; };
+		D12DD3F8162D016200470DCD /* PlayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerColor.cpp; sourceTree = "<group>"; };
+		D12DD3F9162D016200470DCD /* PlayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerColor.h; sourceTree = "<group>"; };
+		D12DD3FB162D0C8900470DCD /* PawnList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PawnList.cpp; sourceTree = "<group>"; };
+		D12DD3FC162D0C8900470DCD /* PawnList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnList.h; sourceTree = "<group>"; };
+		D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PawnNode.cpp; sourceTree = "<group>"; };
+		D12DD3FF162D0CAA00470DCD /* PawnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnNode.h; sourceTree = "<group>"; };
+		D12DD401162D2AD300470DCD /* BoardSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardSpace.cpp; sourceTree = "<group>"; };
+		D12DD402162D2AD300470DCD /* BoardSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardSpace.h; sourceTree = "<group>"; };
 		D180BEFF162CECB900AF873D /* Parcheesi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Parcheesi; sourceTree = BUILT_PRODUCTS_DIR; };
 		D180BF05162CECB900AF873D /* Parcheesi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Parcheesi.1; sourceTree = "<group>"; };
 		D180BF0C162CECDF00AF873D /* Parcheesi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parcheesi.cpp; sourceTree = "<group>"; };
@@ -82,6 +94,14 @@
 				D12DD3F3162CF6FC00470DCD /* Player.h */,
 				D12DD3F5162CF75800470DCD /* Pawn.cpp */,
 				D12DD3F6162CF75800470DCD /* Pawn.h */,
+				D12DD3F8162D016200470DCD /* PlayerColor.cpp */,
+				D12DD3F9162D016200470DCD /* PlayerColor.h */,
+				D12DD3FB162D0C8900470DCD /* PawnList.cpp */,
+				D12DD3FC162D0C8900470DCD /* PawnList.h */,
+				D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */,
+				D12DD3FF162D0CAA00470DCD /* PawnNode.h */,
+				D12DD401162D2AD300470DCD /* BoardSpace.cpp */,
+				D12DD402162D2AD300470DCD /* BoardSpace.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -142,6 +162,10 @@
 				D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */,
 				D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */,
 				D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */,
+				D12DD3FA162D016200470DCD /* PlayerColor.cpp in Sources */,
+				D12DD3FD162D0C8900470DCD /* PawnList.cpp in Sources */,
+				D12DD400162D0CAB00470DCD /* PawnNode.cpp in Sources */,
+				D12DD403162D2AD300470DCD /* BoardSpace.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
