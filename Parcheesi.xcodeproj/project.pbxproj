@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D180BF04162CECB900AF873D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF03162CECB900AF873D /* main.cpp */; };
+		D180BF04162CECB900AF873D /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF03162CECB900AF873D /* Main.cpp */; };
 		D180BF06162CECB900AF873D /* Parcheesi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D180BF05162CECB900AF873D /* Parcheesi.1 */; };
+		D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0C162CECDF00AF873D /* Parcheesi.cpp */; };
+		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +28,12 @@
 
 /* Begin PBXFileReference section */
 		D180BEFF162CECB900AF873D /* Parcheesi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Parcheesi; sourceTree = BUILT_PRODUCTS_DIR; };
-		D180BF03162CECB900AF873D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D180BF03162CECB900AF873D /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		D180BF05162CECB900AF873D /* Parcheesi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Parcheesi.1; sourceTree = "<group>"; };
+		D180BF0C162CECDF00AF873D /* Parcheesi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parcheesi.cpp; sourceTree = "<group>"; };
+		D180BF0D162CECDF00AF873D /* Parcheesi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parcheesi.h; sourceTree = "<group>"; };
+		D180BF0F162CECEC00AF873D /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
+		D180BF10162CECEC00AF873D /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,12 @@
 		D180BF02162CECB900AF873D /* Parcheesi */ = {
 			isa = PBXGroup;
 			children = (
-				D180BF03162CECB900AF873D /* main.cpp */,
 				D180BF05162CECB900AF873D /* Parcheesi.1 */,
+				D180BF03162CECB900AF873D /* Main.cpp */,
+				D180BF0C162CECDF00AF873D /* Parcheesi.cpp */,
+				D180BF0D162CECDF00AF873D /* Parcheesi.h */,
+				D180BF0F162CECEC00AF873D /* Board.cpp */,
+				D180BF10162CECEC00AF873D /* Board.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -117,7 +127,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D180BF04162CECB900AF873D /* main.cpp in Sources */,
+				D180BF04162CECB900AF873D /* Main.cpp in Sources */,
+				D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */,
+				D180BF11162CECEC00AF873D /* Board.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
