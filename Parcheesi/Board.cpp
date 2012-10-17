@@ -2,10 +2,23 @@
 #include "iostream"
 
 Board::Board() {
+    
 }
 
 void Board::draw() {
-    // Here goes the drawing sequence.
+    
+    this->animate();
+    
+    // Drawing code.
+}
+
+void Board::animate() {
+    Animation* animation = animationQueue->dequeue();
+    
+    while(animation != 0) {
+        // Do animation.
+        animation = animationQueue->dequeue();
+    }
 }
 
 void Board::movePawn(int diceRoll, int endingPosition, Pawn *pawn) {
@@ -17,11 +30,14 @@ void Board::movePawn(int diceRoll, int endingPosition, Pawn *pawn) {
     if (newPosition > 0) {
     
         this->board[newPosition].pawnList->add(new PawnNode(pawn));
+        
+        animationQueue->enqueue(new Animation(oldPosition, newPosition));
     
         if (checkCapture(newPosition)) {
             this->movePawn(20, endingPosition, pawn);
             PawnNode* captured = this->board[newPosition].pawnList->getFirst();
             captured->getPawn()->setPosition(Nest);
+            animationQueue->enqueue(new Animation(newPosition, Nest));
             this->board[newPosition].pawnList->remove(this->board[newPosition].pawnList->getFirst());
         }
     }
@@ -31,7 +47,7 @@ bool Board::checkCapture(int position) {
 
     // In special spaces, we can have more than one pawn.
     for (int i = 0; i < 12; i++) {
-        if (specialSpaces[i] == position)
+        if (position == specialSpaces[i])
             return false;
     }
     
