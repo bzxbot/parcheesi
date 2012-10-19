@@ -10,7 +10,6 @@
 		D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3EF162CF57E00470DCD /* Main.cpp */; };
 		D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F2162CF6FC00470DCD /* Player.cpp */; };
 		D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F5162CF75800470DCD /* Pawn.cpp */; };
-		D12DD3FA162D016200470DCD /* PlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F8162D016200470DCD /* PlayerColor.cpp */; };
 		D12DD3FD162D0C8900470DCD /* PawnList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FB162D0C8900470DCD /* PawnList.cpp */; };
 		D12DD400162D0CAB00470DCD /* PawnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */; };
 		D12DD403162D2AD300470DCD /* BoardSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD401162D2AD300470DCD /* BoardSpace.cpp */; };
@@ -19,6 +18,9 @@
 		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
 		D192AD7D162E2EB50038FAE1 /* AnimationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D192AD7B162E2EB50038FAE1 /* AnimationQueue.cpp */; };
 		D192AD81162E2ECC0038FAE1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D192AD7F162E2ECC0038FAE1 /* Animation.cpp */; };
+		D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */; };
+		D1CD59D31631D360005979C8 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CD59D21631D360005979C8 /* GLUT.framework */; };
+		D1CD59D51631D365005979C8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CD59D41631D365005979C8 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,8 +42,6 @@
 		D12DD3F3162CF6FC00470DCD /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		D12DD3F5162CF75800470DCD /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
 		D12DD3F6162CF75800470DCD /* Pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pawn.h; sourceTree = "<group>"; };
-		D12DD3F8162D016200470DCD /* PlayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerColor.cpp; sourceTree = "<group>"; };
-		D12DD3F9162D016200470DCD /* PlayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerColor.h; sourceTree = "<group>"; };
 		D12DD3FB162D0C8900470DCD /* PawnList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PawnList.cpp; sourceTree = "<group>"; };
 		D12DD3FC162D0C8900470DCD /* PawnList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnList.h; sourceTree = "<group>"; };
 		D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PawnNode.cpp; sourceTree = "<group>"; };
@@ -58,6 +58,10 @@
 		D192AD7C162E2EB50038FAE1 /* AnimationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationQueue.h; sourceTree = "<group>"; };
 		D192AD7F162E2ECC0038FAE1 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		D192AD80162E2ECC0038FAE1 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlutWindow.cpp; sourceTree = "<group>"; };
+		D1CD59CF1631D1B1005979C8 /* GlutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlutWindow.h; sourceTree = "<group>"; };
+		D1CD59D21631D360005979C8 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		D1CD59D41631D365005979C8 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CD59D51631D365005979C8 /* OpenGL.framework in Frameworks */,
+				D1CD59D31631D360005979C8 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,8 @@
 		D180BEF4162CECB900AF873D = {
 			isa = PBXGroup;
 			children = (
+				D1CD59D41631D365005979C8 /* OpenGL.framework */,
+				D1CD59D21631D360005979C8 /* GLUT.framework */,
 				D180BF02162CECB900AF873D /* Parcheesi */,
 				D180BF00162CECB900AF873D /* Products */,
 			);
@@ -100,8 +108,6 @@
 				D12DD3F3162CF6FC00470DCD /* Player.h */,
 				D12DD3F5162CF75800470DCD /* Pawn.cpp */,
 				D12DD3F6162CF75800470DCD /* Pawn.h */,
-				D12DD3F8162D016200470DCD /* PlayerColor.cpp */,
-				D12DD3F9162D016200470DCD /* PlayerColor.h */,
 				D12DD3FB162D0C8900470DCD /* PawnList.cpp */,
 				D12DD3FC162D0C8900470DCD /* PawnList.h */,
 				D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */,
@@ -112,6 +118,8 @@
 				D192AD7C162E2EB50038FAE1 /* AnimationQueue.h */,
 				D192AD7F162E2ECC0038FAE1 /* Animation.cpp */,
 				D192AD80162E2ECC0038FAE1 /* Animation.h */,
+				D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */,
+				D1CD59CF1631D1B1005979C8 /* GlutWindow.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -172,12 +180,12 @@
 				D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */,
 				D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */,
 				D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */,
-				D12DD3FA162D016200470DCD /* PlayerColor.cpp in Sources */,
 				D12DD3FD162D0C8900470DCD /* PawnList.cpp in Sources */,
 				D12DD400162D0CAB00470DCD /* PawnNode.cpp in Sources */,
 				D12DD403162D2AD300470DCD /* BoardSpace.cpp in Sources */,
 				D192AD7D162E2EB50038FAE1 /* AnimationQueue.cpp in Sources */,
 				D192AD81162E2ECC0038FAE1 /* Animation.cpp in Sources */,
+				D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

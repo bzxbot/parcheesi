@@ -1,31 +1,10 @@
 #include "Parcheesi.h"
 #include "iostream"
 
-Parcheesi::Parcheesi() {
-    board = new Board();
-    
-    // TODO: Randomize the players.
-//    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
-//    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 39, 34));
-//    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
-//    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
+#include <GLUT/GLUT.h>
 
-    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 20, 15));
-    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 26, 15));
-    
-    firstPlayer->setNextPlayer(secondPlayer);
-//    secondPlayer->setNextPlayer(thirdPlayer);
-//    thirdPlayer->setNextPlayer(forthPlayer);
-//    forthPlayer->setNextPlayer(firstPlayer);
-    secondPlayer->setNextPlayer(firstPlayer);
-    
-    
-    this->firstPlayer = firstPlayer;
-    this->currentPlayer = this->firstPlayer;
-    
-    // TODO: For now, the human player is always the first player.
-    this->humanPlayer = this->firstPlayer;
-}
+int Parcheesi::test = 1;
+Parcheesi* Parcheesi::game = new Parcheesi();
 
 void Parcheesi::turn() {
     int diceRoll = this->diceRoll(); // Roll dice.
@@ -76,9 +55,9 @@ void Parcheesi::turn() {
         pawnToPlay = pawnList->getFirst()->getPawn();
     
         if (pawnToPlay->getPosition() == nest) {
-            pawnToPlay->setPosition(this->currentPlayer->getPlayerColor()->getStartingPosition());
+            pawnToPlay->setPosition(this->currentPlayer->getStartingPosition());
         } else {
-            board->movePawn(diceRoll, this->currentPlayer->getPlayerColor()->getEndingPosition(), pawnToPlay);
+            board->movePawn(diceRoll, this->currentPlayer->getEndingPosition(), pawnToPlay);
         }
         
         std::cout << pawnToPlay->getPosition() << "\n";
@@ -100,6 +79,10 @@ void Parcheesi::run() {
     gameOver();
 }
 
+void Parcheesi::animation() {
+    
+}
+
 bool Parcheesi::isGameOver() {
     return false;
 }
@@ -116,4 +99,68 @@ int Parcheesi::diceRoll() {
     }
     
     return previousRoll;
+}
+
+void Parcheesi::run2() {
+    
+//    Parcheesi::test = 1;
+//    
+//    while (!Parcheesi::game->isGameOver()) {
+//        
+//        Parcheesi::game->board->draw();
+//        
+//        Parcheesi::game->turn();
+//    }
+//    
+//    Parcheesi::game->gameOver();
+    
+    glBegin(GL_QUADS);
+    
+    srand((int)time(0));
+    
+    glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
+    
+    int x1 = rand() % 500;
+    int y1 = rand() % 300;
+    int x2 = rand() % 500;
+    int y2 = rand() % 300;
+    
+    glVertex2d(x1, y1);
+    glVertex2d(x1, y2);
+    glVertex2d(x2, y2);
+    glVertex2d(x2, y1);
+    
+	glEnd();
+    glFlush();
+}
+
+void Parcheesi::animation2() {
+    
+}
+
+Parcheesi::Parcheesi() {
+    window = new GlutWindow(&Parcheesi::run2, &Parcheesi::animation2);
+    board = new Board();
+    
+    // TODO: Randomize the players.
+    //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
+    //    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 39, 34));
+    //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
+    //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
+    
+    Player* firstPlayer = new Player(Player::Color::Blue, 20, 15);
+    Player* secondPlayer = new Player(Player::Color::Red, 26, 15);
+    
+    firstPlayer->setNextPlayer(secondPlayer);
+    //    secondPlayer->setNextPlayer(thirdPlayer);
+    //    thirdPlayer->setNextPlayer(forthPlayer);
+    //    forthPlayer->setNextPlayer(firstPlayer);
+    secondPlayer->setNextPlayer(firstPlayer);
+    
+    
+    this->firstPlayer = firstPlayer;
+    this->currentPlayer = this->firstPlayer;
+    
+    // TODO: For now, the human player is always the first player.
+    this->humanPlayer = this->firstPlayer;
 }

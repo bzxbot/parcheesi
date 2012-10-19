@@ -1,3 +1,6 @@
+#ifndef Board_Header
+#define Board_Header
+
 #include "Player.h"
 #include "BoardSpace.h"
 #include "AnimationQueue.h"
@@ -19,3 +22,5 @@ class Board {
         void draw();
         void animate();
 };
+
+#endif

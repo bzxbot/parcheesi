@@ -1,5 +1,9 @@
+#ifndef Parcheesi_Header
+#define Parcheesi_Header
+
 #include "Board.h"
 #include "PawnList.h"
+#include "GlutWindow.h"
 
 class Parcheesi {
     private:
@@ -7,6 +11,9 @@ class Parcheesi {
         Player* firstPlayer;
         Player* humanPlayer;
         Player* currentPlayer;
+        GlutWindow* window;
+
+        static int test;
         int previousRoll = 2 ;
         void turn();
         bool isGameOver();
@@ -16,4 +23,10 @@ class Parcheesi {
     public:
         Parcheesi();
         void run();
+        void animation();
+        static Parcheesi* game;
+        static void run2();
+        static void animation2();
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef Animation_Header
+#define Animation_Heaer
+
 class Animation {
     public:
         Animation(int from, int to);
@@ -8,3 +11,5 @@ class Animation {
         int to;
         Animation* next;
 };
+
+#endif

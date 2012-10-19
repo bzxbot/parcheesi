@@ -1,15 +1,28 @@
-#include "PlayerColor.h"
+#ifndef Player_Header
+#define Player_Header
+
 #include "Pawn.h"
 
 class Player {
     public:
-        Player(PlayerColor* playerColor);
+        enum Color {
+            Blue,
+            Red,
+            Green,
+            Yellow
+        };
+        Player(Color color, int startingPosition, int endingPosition);
         Player* getNextPlayer();
         void setNextPlayer(Player* nextPlayer);
         Pawn* getFirstPawn();
-        PlayerColor* getPlayerColor();
+        int getStartingPosition();
+        int getEndingPosition();
     private:
-        PlayerColor* playerColor;
         Player* nextPlayer;
         Pawn* firstPawn;
+        Color color;
+        int startingPosition;
+        int endingPosition;
 };
+
+#endif

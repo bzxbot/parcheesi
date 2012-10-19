@@ -1,11 +1,9 @@
 #include "Player.h"
 
-Player::Player(PlayerColor *playerColor) {
-    this->playerColor = playerColor;
-    
+Player::Player(Color color, int startingPosition, int endingPosition) {
     int nest = 0;
     
-    Pawn* firstPawn = new Pawn(playerColor->getStartingPosition());
+    Pawn* firstPawn = new Pawn(startingPosition);
     Pawn* secondPawn = new Pawn(nest);
     Pawn* thirdPawn = new Pawn(nest);
     Pawn* forthPawn = new Pawn(nest);
@@ -15,6 +13,9 @@ Player::Player(PlayerColor *playerColor) {
     thirdPawn->setNextPawn(forthPawn);
     
     this->firstPawn = firstPawn;
+    this->color = color;
+    this->startingPosition = startingPosition;
+    this->endingPosition = endingPosition;
 }
 
 Player* Player::getNextPlayer() {
@@ -29,6 +30,10 @@ Pawn* Player::getFirstPawn() {
     return this->firstPawn;
 }
 
-PlayerColor* Player::getPlayerColor() {
-    return this->playerColor;
+int Player::getStartingPosition() {
+    return this->startingPosition;
+}
+
+int Player::getEndingPosition() {
+    return this->endingPosition;
 }

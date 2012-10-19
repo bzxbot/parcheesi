@@ -1,3 +1,6 @@
+#ifndef AnimationQueue_Header
+#define AnimationQueue_Header
+
 #include "Animation.h"
 
 class AnimationQueue {
@@ -8,3 +11,5 @@ class AnimationQueue {
         Animation* first;
         Animation* last;
 };
+
+#endif
