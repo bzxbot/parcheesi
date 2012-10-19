@@ -13,8 +13,8 @@ class Player {
         };
         Player(Color color, int startingPosition, int endingPosition);
         Player* getNextPlayer();
-        void setNextPlayer(Player* nextPlayer);
         Pawn* getFirstPawn();
+        void setNextPlayer(Player* nextPlayer);
         int getStartingPosition();
         int getEndingPosition();
     private:
