@@ -2,9 +2,9 @@
 
 int main( int argc, const char* argv[] )
 {
-    Parcheesi *parcheesi = new Parcheesi();
+    Parcheesi *parcheesi = Parcheesi::getInstance();
     
-    parcheesi->run();
+    parcheesi->start();
     
     return 0;
 }

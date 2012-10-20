@@ -1,46 +1,12 @@
 #include "Parcheesi.h"
 #include "iostream"
 
-#include <GLUT/GLUT.h>
-
-int Parcheesi::test = 1;
-Parcheesi* Parcheesi::game = new Parcheesi();
+Parcheesi* Parcheesi::instance = new Parcheesi();
 
 void Parcheesi::turn() {
-    int diceRoll = this->diceRoll(); // Roll dice.
-    int canAddNewPawn = 5;
-    int nest = 0;
-    int end = -8;
-    PawnList* pawnList = new PawnList();
-    Pawn* pawn = this->currentPlayer->getFirstPawn();
+    int diceRoll = this->diceRoll();
     
-    if (diceRoll == canAddNewPawn) {
-
-        // Find a pawn in nest and add to can play list.
-        
-        pawn = this->currentPlayer->getFirstPawn();
-
-        while(pawn != 0) {
-            if (pawn->getPosition() == nest){
-                pawnList->add(new PawnNode(pawn));
-                break;
-            }
-            
-            pawn = pawn->getNextPawn();
-        }
-    }
-    
-    // Find all pawns in positions not in nest or end and add to possible play list.
-    
-    pawn = this->currentPlayer->getFirstPawn();
-    
-    while(pawn != 0) {
-        if (pawn->getPosition() != nest && pawn->getPosition() != end) {
-            pawnList->add(new PawnNode(pawn));
-        }
-        
-        pawn = pawn->getNextPawn();
-    }
+    PawnList* pawnList = this->getPlayablePawns(diceRoll);
     
     // Highlight possible play pawns.
     
@@ -48,17 +14,11 @@ void Parcheesi::turn() {
     
     // For now, always selects the first pawn in the PawnList.
     
-    Pawn* pawnToPlay;
-    
     if (pawnList->getFirst() != 0) {
 
-        pawnToPlay = pawnList->getFirst()->getPawn();
+        Pawn* pawnToPlay = pawnList->getFirst()->getPawn();
     
-        if (pawnToPlay->getPosition() == nest) {
-            pawnToPlay->setPosition(this->currentPlayer->getStartingPosition());
-        } else {
-            board->movePawn(diceRoll, this->currentPlayer->getEndingPosition(), pawnToPlay);
-        }
+        board->movePawn(diceRoll, this->currentPlayer, pawnToPlay);
         
         std::cout << pawnToPlay->getPosition() << "\n";
 
@@ -67,20 +27,109 @@ void Parcheesi::turn() {
     this->currentPlayer = this->currentPlayer->getNextPlayer();
 }
 
-void Parcheesi::run() {
+Parcheesi* Parcheesi::getInstance() {
+    return instance;
+}
+
+PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
+    PawnList* pawnList = new PawnList();
+    Pawn* pawn;
+    int canAddNewPawn = 5;
     
-    while (!isGameOver()) {
+    // Find a pawn in nest and add to the pawn list.
+    
+    if (diceRoll == canAddNewPawn) {
         
-        board->draw();
-    
-        this->turn();
+        pawn = this->currentPlayer->getFirstPawn();
+        
+        while(pawn != 0) {
+            if (pawn->getPosition() == Board::Nest){
+                pawnList->add(new PawnNode(pawn));
+                break;
+            }
+            
+            pawn = pawn->getNextPawn();
+        }
     }
     
-    gameOver();
+    // Find all pawns in positions not in nest or end and add to pawn list.
+    
+    pawn = this->currentPlayer->getFirstPawn();
+    
+    while(pawn != 0) {
+        if (pawn->getPosition() != Board::Nest && pawn->getPosition() != Board::End) {
+            pawnList->add(new PawnNode(pawn));
+        }
+        
+        pawn = pawn->getNextPawn();
+    }
+    
+    return pawnList;
+}
+
+//void Parcheesi::run() {
+//    
+//    while (!instance->isGameOver()) {
+//        
+//        instance->board->draw();
+//        
+//        // Drawing test.
+//        glBegin(GL_QUADS);
+//        
+//        srand((int)time(0));
+//        
+//        glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
+//        
+//        int x1 = rand() % 500;
+//        int y1 = rand() % 300;
+//        int x2 = rand() % 500;
+//        int y2 = rand() % 300;
+//        
+//        glVertex2d(x1, y1);
+//        glVertex2d(x1, y2);
+//        glVertex2d(x2, y2);
+//        glVertex2d(x2, y1);
+//        
+//        glEnd();
+//        glFlush();
+//
+//        instance->turn();
+//    }
+//    
+//    instance->gameOver();
+//}
+
+void Parcheesi::run() {
+//    glBegin(GL_QUADS);
+//    
+//    srand((int)time(0));
+//    
+//    glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
+//    
+//    int x1 = rand() % 500;
+//    int y1 = rand() % 300;
+//    int x2 = rand() % 500;
+//    int y2 = rand() % 300;
+//    
+//    glVertex2d(x1, y1);
+//    glVertex2d(x1, y2);
+//    glVertex2d(x2, y2);
+//    glVertex2d(x2, y1);
+//    
+//    glEnd();
+//    glFlush();
 }
 
 void Parcheesi::animation() {
+    while (!instance->isGameOver()) {
+        
+        instance->glRenderer->render();
+        
+        instance->turn();
+    }
     
+    instance->gameOver();
+
 }
 
 bool Parcheesi::isGameOver() {
@@ -101,46 +150,14 @@ int Parcheesi::diceRoll() {
     return previousRoll;
 }
 
-void Parcheesi::run2() {
-    
-//    Parcheesi::test = 1;
-//    
-//    while (!Parcheesi::game->isGameOver()) {
-//        
-//        Parcheesi::game->board->draw();
-//        
-//        Parcheesi::game->turn();
-//    }
-//    
-//    Parcheesi::game->gameOver();
-    
-    glBegin(GL_QUADS);
-    
-    srand((int)time(0));
-    
-    glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
-    
-    int x1 = rand() % 500;
-    int y1 = rand() % 300;
-    int x2 = rand() % 500;
-    int y2 = rand() % 300;
-    
-    glVertex2d(x1, y1);
-    glVertex2d(x1, y2);
-    glVertex2d(x2, y2);
-    glVertex2d(x2, y1);
-    
-	glEnd();
-    glFlush();
-}
-
-void Parcheesi::animation2() {
-    
+void Parcheesi::start() {
+    window->show();
 }
 
 Parcheesi::Parcheesi() {
-    window = new GlutWindow(&Parcheesi::run2, &Parcheesi::animation2);
+    window = new GlutWindow(&Parcheesi::run, &Parcheesi::animation);
     board = new Board();
+    glRenderer = new GlRenderer(new GlBoardRenderer(board));
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
@@ -148,8 +165,8 @@ Parcheesi::Parcheesi() {
     //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
     //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
     
-    Player* firstPlayer = new Player(Player::Color::Blue, 20, 15);
-    Player* secondPlayer = new Player(Player::Color::Red, 26, 15);
+    Player* firstPlayer = new Player(Player::Type::AI, Player::Color::Blue, 20, 15);
+    Player* secondPlayer = new Player(Player::Type::AI, Player::Color::Red, 26, 15);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);
@@ -160,7 +177,4 @@ Parcheesi::Parcheesi() {
     
     this->firstPlayer = firstPlayer;
     this->currentPlayer = this->firstPlayer;
-    
-    // TODO: For now, the human player is always the first player.
-    this->humanPlayer = this->firstPlayer;
 }

@@ -21,31 +21,34 @@ void Board::animate() {
     }
 }
 
-void Board::movePawn(int diceRoll, int endingPosition, Pawn *pawn) {
-    int oldPosition = pawn->getPosition();
-    int newPosition = this->nextPawnPosition(diceRoll, oldPosition, endingPosition);
+void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
+    int currentPosition = pawn->getPosition();
+    int newPosition = this->nextPawnPosition(diceRoll, currentPosition, player->getStartingPosition(), player->getEndingPosition());
+    int currentIndex = currentPosition - 1;
+    int newIndex = newPosition - 1;
     
     pawn->setPosition(newPosition);
     
-    if (newPosition > 0) {
+    if (newPosition > Board::Nest) {
     
-        this->board[newPosition].pawnList->add(new PawnNode(pawn));
-        
-        animationQueue->enqueue(new Animation(oldPosition, newPosition));
+        this->board[newIndex].pawnList->add(new PawnNode(pawn));
+        this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
     
         if (checkCapture(newPosition)) {
-            this->movePawn(20, endingPosition, pawn);
-            PawnNode* captured = this->board[newPosition].pawnList->getFirst();
-            captured->getPawn()->setPosition(Nest);
-            animationQueue->enqueue(new Animation(newPosition, Nest));
-            this->board[newPosition].pawnList->remove(this->board[newPosition].pawnList->getFirst());
+            
+            this->movePawn(20, player, pawn);
+            
+            PawnNode* captured = this->board[newIndex].pawnList->getFirst();
+            
+            captured->getPawn()->setPosition(Board::Nest);
+            
+            this->board[newIndex].pawnList->remove(this->board[newIndex].pawnList->getFirst());
         }
     }
 }
 
 bool Board::checkCapture(int position) {
-
-    // In special spaces, we can have more than one pawn.
+    // In special spaces, we can have more than one pawn in a space.
     for (int i = 0; i < 12; i++) {
         if (position == specialSpaces[i])
             return false;
@@ -54,17 +57,14 @@ bool Board::checkCapture(int position) {
     return this->board[position].pawnList->getFirst()->getNext() != 0;
 }
 
-int Board::nextPawnPosition(int diceRoll, int currentPosition, int endingPosition) {
-    int nest = 0;
-    int end = -8;
-    int boardEnd = 68;
-    
-    if (currentPosition > nest) {
-        
+int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition) {
+    if (currentPosition == Board::Nest) {
+        return startingPosition;
+    } else if (currentPosition > Board::Nest) {
         bool end = false;
         
         for(int i = 1; i <= diceRoll; i++) {
-            if (currentPosition + i == endingPosition) {
+            if (currentPosition + i > endingPosition) {
                 end = true;
                 break;
             }
@@ -72,23 +72,17 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int endingPositio
         
         if (end) {
             int remaining = endingPosition - currentPosition;
+            
             return remaining - diceRoll;
         } else {
             int position = currentPosition + diceRoll;
             
-            if (position > boardEnd)
-                position = position - boardEnd;
-            
-            return position;
+            return position > Board::Size ? position - Board::Size : position ;
         }
         
-    } else {
-        
+    } else {        
         int position = currentPosition - diceRoll;
         
-        if (position < end)
-            position = end;
-        
-        return position;
+        return position < Board::End ? Board::End : position;
     }
 }

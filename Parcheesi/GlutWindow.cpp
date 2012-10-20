@@ -15,5 +15,8 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*idleFunction)()) {
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, 500, 0, 300);
+}
+
+void GlutWindow::show() {
     glutMainLoop();
 }

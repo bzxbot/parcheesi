@@ -11,16 +11,22 @@ class Player {
             Green,
             Yellow
         };
-        Player(Color color, int startingPosition, int endingPosition);
+        enum Type {
+            Human,
+            AI
+        };
+        Player(Type type, Color color, int startingPosition, int endingPosition);
         Player* getNextPlayer();
         Pawn* getFirstPawn();
         void setNextPlayer(Player* nextPlayer);
         int getStartingPosition();
         int getEndingPosition();
+        Type getPlayerType();
     private:
         Player* nextPlayer;
         Pawn* firstPawn;
         Color color;
+        Type type;
         int startingPosition;
         int endingPosition;
 };

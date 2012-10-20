@@ -21,6 +21,8 @@
 		D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */; };
 		D1CD59D31631D360005979C8 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CD59D21631D360005979C8 /* GLUT.framework */; };
 		D1CD59D51631D365005979C8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CD59D41631D365005979C8 /* OpenGL.framework */; };
+		D1CD59D816334506005979C8 /* GlRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CD59D616334506005979C8 /* GlRenderer.cpp */; };
+		D1CD59DB1633450F005979C8 /* GlBoardRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CD59D91633450F005979C8 /* GlBoardRenderer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +64,10 @@
 		D1CD59CF1631D1B1005979C8 /* GlutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlutWindow.h; sourceTree = "<group>"; };
 		D1CD59D21631D360005979C8 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		D1CD59D41631D365005979C8 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D1CD59D616334506005979C8 /* GlRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlRenderer.cpp; sourceTree = "<group>"; };
+		D1CD59D716334506005979C8 /* GlRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlRenderer.h; sourceTree = "<group>"; };
+		D1CD59D91633450F005979C8 /* GlBoardRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlBoardRenderer.cpp; sourceTree = "<group>"; };
+		D1CD59DA1633450F005979C8 /* GlBoardRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlBoardRenderer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,10 @@
 				D192AD80162E2ECC0038FAE1 /* Animation.h */,
 				D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */,
 				D1CD59CF1631D1B1005979C8 /* GlutWindow.h */,
+				D1CD59D616334506005979C8 /* GlRenderer.cpp */,
+				D1CD59D716334506005979C8 /* GlRenderer.h */,
+				D1CD59D91633450F005979C8 /* GlBoardRenderer.cpp */,
+				D1CD59DA1633450F005979C8 /* GlBoardRenderer.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -186,6 +196,8 @@
 				D192AD7D162E2EB50038FAE1 /* AnimationQueue.cpp in Sources */,
 				D192AD81162E2ECC0038FAE1 /* Animation.cpp in Sources */,
 				D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */,
+				D1CD59D816334506005979C8 /* GlRenderer.cpp in Sources */,
+				D1CD59DB1633450F005979C8 /* GlBoardRenderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
