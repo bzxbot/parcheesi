@@ -2,8 +2,6 @@
 
 Board::Board() {
     board = new BoardSpace[Board::Size];
-    
-    Parcheesi::getRenderer()->registerBoardRenderer(new GlBoardRenderer(this));
 }
 
 void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {

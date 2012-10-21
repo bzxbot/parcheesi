@@ -2,18 +2,18 @@
 #define Parcheesi_GlPawnRenderer
 
 #include "Pawn.h"
+#include "IObjectRenderer.h"
 
 class Pawn;
 
-class GlPawnRenderer {
+class GlPawnRenderer : public IObjectRenderer {
     private:
         Pawn* pawn;
-        GlPawnRenderer* next;
     public:
         GlPawnRenderer(Pawn* pawn);
-        void render();
-        GlPawnRenderer* getNext();
-        void setNext(GlPawnRenderer* next);
+        virtual IObjectRenderer* getNext();
+        virtual void setNext(IObjectRenderer* next);
+        virtual void render();
 };
 
 #endif

@@ -9,13 +9,11 @@ class GlPawnRenderer;
 
 class GlRenderer {
     private:
-        GlBoardRenderer* glBoardRenderer;
-        GlPawnRenderer* glPawnRenderer;
+        IObjectRenderer* renderer;
     public:
         GlRenderer();
         void render();
-        void registerBoardRenderer(GlBoardRenderer* glBoardRenderer);
-        void registerPawnRenderer(GlPawnRenderer* glPawnRenderer);
+        void registerRender(IObjectRenderer* renderer);
 };
 
 #endif

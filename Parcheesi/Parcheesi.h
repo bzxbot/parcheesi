@@ -20,9 +20,9 @@ class Parcheesi {
         Board* board;
         Player* firstPlayer;
         Player* currentPlayer;
-        GlutWindow* glutWindow;
-
-        static GlRenderer* renderer;
+        GlutWindow* window;
+        GlRenderer* renderer;
+    
         static Parcheesi* instance;
     
         int previousRoll = 2 ;
@@ -38,7 +38,6 @@ class Parcheesi {
     public:
         void start();
         static Parcheesi* getInstance();
-        static GlRenderer* getRenderer();
 };
 
 

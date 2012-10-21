@@ -1,34 +1,28 @@
 #include "GlRenderer.h"
 
 GlRenderer::GlRenderer() {
-    this->glBoardRenderer = 0;
-    this->glPawnRenderer = 0;
+    this->renderer = 0;
 }
 
 void GlRenderer::render() {
-    glBoardRenderer->render();
-    GlPawnRenderer* glPawnRenderer = this->glPawnRenderer;
+    IObjectRenderer* renderer = this->renderer;
     
-    while(glPawnRenderer != 0) {
-        glPawnRenderer->render();
-        glPawnRenderer = glPawnRenderer->getNext();
+    while(renderer != 0) {
+        renderer->render();
+        renderer = renderer->getNext();
     }
 }
 
-void GlRenderer::registerBoardRenderer(GlBoardRenderer* glBoardRenderer) {
-    this->glBoardRenderer = glBoardRenderer;
-}
-
-void GlRenderer::registerPawnRenderer(GlPawnRenderer* glPawnRenderer) {
-    if (this->glPawnRenderer == 0) {
-        this->glPawnRenderer = glPawnRenderer;
+void GlRenderer::registerRender(IObjectRenderer* renderer) {
+    if (this->renderer == 0) {
+        this->renderer = renderer;
     } else {
-        GlPawnRenderer* previous = this->glPawnRenderer;
-        GlPawnRenderer* current = previous;
+        IObjectRenderer* previous = this->renderer;
+        IObjectRenderer* current = previous;
         while(current->getNext() != 0) {
             previous = current;
             current = current->getNext();
         }
-        previous->setNext(glPawnRenderer);
+        previous->setNext(renderer);
     }
 }

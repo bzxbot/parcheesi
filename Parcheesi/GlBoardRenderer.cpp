@@ -3,6 +3,7 @@
 
 GlBoardRenderer::GlBoardRenderer(Board* board) {
     this->board = board;
+    this->next = 0;
 }
 
 void GlBoardRenderer::render() {
@@ -28,4 +29,12 @@ void GlBoardRenderer::render() {
     glEnd();
     glFlush();
     
+}
+
+IObjectRenderer* GlBoardRenderer::getNext() {
+    return this->next;
+}
+
+void GlBoardRenderer::setNext(IObjectRenderer *next) {
+    this->next = next;
 }

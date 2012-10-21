@@ -1,6 +1,5 @@
 #include "Parcheesi.h"
 
-GlRenderer* Parcheesi::renderer = new GlRenderer();
 Parcheesi* Parcheesi::instance = new Parcheesi();
 
 void Parcheesi::turn() {
@@ -24,10 +23,6 @@ void Parcheesi::turn() {
     }
     
     this->currentPlayer = this->currentPlayer->getNextPlayer();
-}
-
-GlRenderer* Parcheesi::getRenderer() {
-    return renderer;
 }
 
 Parcheesi* Parcheesi::getInstance() {
@@ -78,7 +73,7 @@ void Parcheesi::animation() {
     
     instance->turn();
     
-    instance->glutWindow->redisplay();
+    instance->window->redisplay();
 
     if (instance->isGameOver())
         instance->gameOver();
@@ -102,12 +97,14 @@ int Parcheesi::diceRoll() {
 }
 
 void Parcheesi::start() {
-    glutWindow->show();
+    window->show();
 }
 
 Parcheesi::Parcheesi() {
     board = new Board();
-    glutWindow = new GlutWindow(&Parcheesi::render, &Parcheesi::animation);
+    window = new GlutWindow(&Parcheesi::render, &Parcheesi::animation);
+    renderer = new GlRenderer();
+    renderer->registerRender(new GlBoardRenderer(board));
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
@@ -123,6 +120,20 @@ Parcheesi::Parcheesi() {
     //    thirdPlayer->setNextPlayer(forthPlayer);
     //    forthPlayer->setNextPlayer(firstPlayer);
     secondPlayer->setNextPlayer(firstPlayer);
+    
+    Player* player = firstPlayer->getNextPlayer();
+    
+    while (player != firstPlayer) {
+        Pawn* pawn = firstPlayer->getFirstPawn();
+        
+        while(pawn != 0) {
+            renderer->registerRender(new GlPawnRenderer(pawn));
+            
+            pawn = pawn->getNextPawn();
+        }
+        
+        player = player->getNextPlayer();
+    }
     
     
     this->firstPlayer = firstPlayer;

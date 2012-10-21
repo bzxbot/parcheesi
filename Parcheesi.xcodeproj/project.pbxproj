@@ -14,6 +14,7 @@
 		D12DD3FD162D0C8900470DCD /* PawnList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FB162D0C8900470DCD /* PawnList.cpp */; };
 		D12DD400162D0CAB00470DCD /* PawnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3FE162D0CAA00470DCD /* PawnNode.cpp */; };
 		D12DD403162D2AD300470DCD /* BoardSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD401162D2AD300470DCD /* BoardSpace.cpp */; };
+		D177E55A1633975C00CD1FDB /* IObjectRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */; };
 		D180BF06162CECB900AF873D /* Parcheesi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D180BF05162CECB900AF873D /* Parcheesi.1 */; };
 		D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0C162CECDF00AF873D /* Parcheesi.cpp */; };
 		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
@@ -53,6 +54,8 @@
 		D12DD3FF162D0CAA00470DCD /* PawnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnNode.h; sourceTree = "<group>"; };
 		D12DD401162D2AD300470DCD /* BoardSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardSpace.cpp; sourceTree = "<group>"; };
 		D12DD402162D2AD300470DCD /* BoardSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardSpace.h; sourceTree = "<group>"; };
+		D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IObjectRenderer.cpp; sourceTree = "<group>"; };
+		D177E5591633975B00CD1FDB /* IObjectRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IObjectRenderer.h; sourceTree = "<group>"; };
 		D180BEFF162CECB900AF873D /* Parcheesi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Parcheesi; sourceTree = BUILT_PRODUCTS_DIR; };
 		D180BF05162CECB900AF873D /* Parcheesi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Parcheesi.1; sourceTree = "<group>"; };
 		D180BF0C162CECDF00AF873D /* Parcheesi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parcheesi.cpp; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				D1CD59DA1633450F005979C8 /* GlBoardRenderer.h */,
 				D124964616334CB100C38933 /* GlPawnRenderer.cpp */,
 				D124964716334CB100C38933 /* GlPawnRenderer.h */,
+				D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */,
+				D177E5591633975B00CD1FDB /* IObjectRenderer.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				D1CD59D816334506005979C8 /* GlRenderer.cpp in Sources */,
 				D1CD59DB1633450F005979C8 /* GlBoardRenderer.cpp in Sources */,
 				D124964816334CB100C38933 /* GlPawnRenderer.cpp in Sources */,
+				D177E55A1633975C00CD1FDB /* IObjectRenderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

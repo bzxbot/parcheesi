@@ -11,7 +11,6 @@ class Pawn {
         Pawn* getNextPawn();
         int getPosition();
         void setPosition(int position);
-        void incrementPositionBy(int value);
     private:
         int position;
         Pawn* nextPawn;

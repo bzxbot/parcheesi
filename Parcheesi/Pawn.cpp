@@ -2,8 +2,6 @@
 
 Pawn::Pawn(int position) {
     this->position = position;
-    
-    Parcheesi::getRenderer()->registerPawnRenderer(new GlPawnRenderer(this));
 }
 
 void Pawn::setNextPawn(Pawn* nextPawn) {
@@ -20,8 +18,4 @@ int Pawn::getPosition() {
 
 void Pawn::setPosition(int position) {
     this->position = position;
-}
-
-void Pawn::incrementPositionBy(int value) {
-    this->position = this->position + value;
 }

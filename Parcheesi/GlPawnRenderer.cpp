@@ -25,10 +25,10 @@ void GlPawnRenderer::render() {
     glFlush();
 }
 
-GlPawnRenderer* GlPawnRenderer::getNext() {
+IObjectRenderer* GlPawnRenderer::getNext() {
     return this->next;
 }
 
-void GlPawnRenderer::setNext(GlPawnRenderer *next) {
+void GlPawnRenderer::setNext(IObjectRenderer *next) {
     this->next = next;
 }
