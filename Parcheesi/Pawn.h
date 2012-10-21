@@ -1,6 +1,9 @@
 #ifndef Pawn_Header
 #define Pawn_Header
 
+#include "Parcheesi.h"
+#include "GlPawnRenderer.h"
+
 class Pawn {
     public:
         Pawn(int position);

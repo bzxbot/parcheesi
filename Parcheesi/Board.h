@@ -1,14 +1,18 @@
-#ifndef Board_Header
-#define Board_Header
+#ifndef Parcheesi_Board
+#define Parcheesi_Board
 
 #include "Player.h"
 #include "BoardSpace.h"
 #include "AnimationQueue.h"
+#include "Parcheesi.h"
+
+class BoardSpace;
+class Player;
 
 class Board {
     private:
         Player* player;
-        BoardSpace* board = new BoardSpace[Size];
+        BoardSpace* board;
         int specialSpaces[12] = { 6, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68 };
         AnimationQueue* animationQueue = new AnimationQueue();
     public:
@@ -19,8 +23,6 @@ class Board {
         void movePawn(int diceRoll, Player* player, Pawn* pawn);
         bool checkCapture(int position);
         int nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition);
-        void draw();
-        void animate();
 };
 
 #endif

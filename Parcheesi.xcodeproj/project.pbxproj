@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D124964816334CB100C38933 /* GlPawnRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D124964616334CB100C38933 /* GlPawnRenderer.cpp */; };
 		D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3EF162CF57E00470DCD /* Main.cpp */; };
 		D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F2162CF6FC00470DCD /* Player.cpp */; };
 		D12DD3F7162CF75900470DCD /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F5162CF75800470DCD /* Pawn.cpp */; };
@@ -39,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D124964616334CB100C38933 /* GlPawnRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlPawnRenderer.cpp; sourceTree = "<group>"; };
+		D124964716334CB100C38933 /* GlPawnRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlPawnRenderer.h; sourceTree = "<group>"; };
 		D12DD3EF162CF57E00470DCD /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		D12DD3F2162CF6FC00470DCD /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		D12DD3F3162CF6FC00470DCD /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				D1CD59D716334506005979C8 /* GlRenderer.h */,
 				D1CD59D91633450F005979C8 /* GlBoardRenderer.cpp */,
 				D1CD59DA1633450F005979C8 /* GlBoardRenderer.h */,
+				D124964616334CB100C38933 /* GlPawnRenderer.cpp */,
+				D124964716334CB100C38933 /* GlPawnRenderer.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */,
 				D1CD59D816334506005979C8 /* GlRenderer.cpp in Sources */,
 				D1CD59DB1633450F005979C8 /* GlBoardRenderer.cpp in Sources */,
+				D124964816334CB100C38933 /* GlPawnRenderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

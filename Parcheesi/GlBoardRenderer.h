@@ -3,6 +3,8 @@
 
 #include "Board.h"
 
+class Board;
+
 class GlBoardRenderer {
     private:
         Board* board;

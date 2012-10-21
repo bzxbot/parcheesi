@@ -27,4 +27,5 @@ void GlBoardRenderer::render() {
     
     glEnd();
     glFlush();
+    
 }

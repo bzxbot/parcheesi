@@ -1,11 +1,14 @@
 #ifndef BoardSpace_Header
 #define BoardSpace_Header
 
+class PawnList;
+
 #include "PawnList.h"
 
 class BoardSpace {
     public:
-        PawnList* pawnList = new PawnList();
+        BoardSpace();
+        PawnList* pawnList;
 };
 
 #endif

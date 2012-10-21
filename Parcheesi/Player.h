@@ -1,7 +1,9 @@
-#ifndef Player_Header
-#define Player_Header
+#ifndef Parcheesi_Player
+#define Parcheesi_Player
 
 #include "Pawn.h"
+
+class Pawn;
 
 class Player {
     public:
@@ -13,7 +15,7 @@ class Player {
         };
         enum Type {
             Human,
-            AI
+            Robot
         };
         Player(Type type, Color color, int startingPosition, int endingPosition);
         Player* getNextPlayer();

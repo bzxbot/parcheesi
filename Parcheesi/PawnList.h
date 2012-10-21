@@ -3,6 +3,8 @@
 
 #include "PawnNode.h"
 
+class PawnNode;
+
 class PawnList {
     private:
         PawnNode* first;

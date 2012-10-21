@@ -1,24 +1,9 @@
 #include "Board.h"
-#include "iostream"
 
 Board::Board() {
+    board = new BoardSpace[Board::Size];
     
-}
-
-void Board::draw() {
-    
-    this->animate();
-    
-    // Drawing code.
-}
-
-void Board::animate() {
-    Animation* animation = animationQueue->dequeue();
-    
-    while(animation != 0) {
-        // Do animation.
-        animation = animationQueue->dequeue();
-    }
+    Parcheesi::getRenderer()->registerBoardRenderer(new GlBoardRenderer(this));
 }
 
 void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {

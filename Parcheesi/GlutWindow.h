@@ -5,6 +5,7 @@ class GlutWindow {
     public:
         GlutWindow(void (*displayFunction)(), void (*idleFunction)());
         void show();
+        void redisplay();
 };
 
 #endif

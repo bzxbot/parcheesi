@@ -1,6 +1,6 @@
 #include "Parcheesi.h"
-#include "iostream"
 
+GlRenderer* Parcheesi::renderer = new GlRenderer();
 Parcheesi* Parcheesi::instance = new Parcheesi();
 
 void Parcheesi::turn() {
@@ -21,10 +21,13 @@ void Parcheesi::turn() {
         board->movePawn(diceRoll, this->currentPlayer, pawnToPlay);
         
         std::cout << pawnToPlay->getPosition() << "\n";
-
     }
     
     this->currentPlayer = this->currentPlayer->getNextPlayer();
+}
+
+GlRenderer* Parcheesi::getRenderer() {
+    return renderer;
 }
 
 Parcheesi* Parcheesi::getInstance() {
@@ -67,69 +70,18 @@ PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
     return pawnList;
 }
 
-//void Parcheesi::run() {
-//    
-//    while (!instance->isGameOver()) {
-//        
-//        instance->board->draw();
-//        
-//        // Drawing test.
-//        glBegin(GL_QUADS);
-//        
-//        srand((int)time(0));
-//        
-//        glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
-//        
-//        int x1 = rand() % 500;
-//        int y1 = rand() % 300;
-//        int x2 = rand() % 500;
-//        int y2 = rand() % 300;
-//        
-//        glVertex2d(x1, y1);
-//        glVertex2d(x1, y2);
-//        glVertex2d(x2, y2);
-//        glVertex2d(x2, y1);
-//        
-//        glEnd();
-//        glFlush();
-//
-//        instance->turn();
-//    }
-//    
-//    instance->gameOver();
-//}
-
-void Parcheesi::run() {
-//    glBegin(GL_QUADS);
-//    
-//    srand((int)time(0));
-//    
-//    glColor3f((float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX), (float)rand()/(RAND_MAX));
-//    
-//    int x1 = rand() % 500;
-//    int y1 = rand() % 300;
-//    int x2 = rand() % 500;
-//    int y2 = rand() % 300;
-//    
-//    glVertex2d(x1, y1);
-//    glVertex2d(x1, y2);
-//    glVertex2d(x2, y2);
-//    glVertex2d(x2, y1);
-//    
-//    glEnd();
-//    glFlush();
+void Parcheesi::render() {
+    instance->renderer->render();
 }
 
 void Parcheesi::animation() {
-    while (!instance->isGameOver()) {
-        
-        instance->glRenderer->render();
-        
-        instance->turn();
-    }
     
-    instance->gameOver();
+    instance->turn();
+    
+    instance->glutWindow->redisplay();
 
+    if (instance->isGameOver())
+        instance->gameOver();
 }
 
 bool Parcheesi::isGameOver() {
@@ -137,7 +89,6 @@ bool Parcheesi::isGameOver() {
 }
 
 void Parcheesi::gameOver() {
-    
 }
 
 int Parcheesi::diceRoll() {
@@ -151,13 +102,12 @@ int Parcheesi::diceRoll() {
 }
 
 void Parcheesi::start() {
-    window->show();
+    glutWindow->show();
 }
 
 Parcheesi::Parcheesi() {
-    window = new GlutWindow(&Parcheesi::run, &Parcheesi::animation);
     board = new Board();
-    glRenderer = new GlRenderer(new GlBoardRenderer(board));
+    glutWindow = new GlutWindow(&Parcheesi::render, &Parcheesi::animation);
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
@@ -165,8 +115,8 @@ Parcheesi::Parcheesi() {
     //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
     //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
     
-    Player* firstPlayer = new Player(Player::Type::AI, Player::Color::Blue, 20, 15);
-    Player* secondPlayer = new Player(Player::Type::AI, Player::Color::Red, 26, 15);
+    Player* firstPlayer = new Player(Player::Type::Robot, Player::Color::Blue, 20, 15);
+    Player* secondPlayer = new Player(Player::Type::Robot, Player::Color::Red, 26, 15);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);
