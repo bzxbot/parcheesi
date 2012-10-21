@@ -1,5 +1,9 @@
 #include "PawnList.h"
 
+PawnList::PawnList() {
+    this->first = 0;
+}
+
 void PawnList::add(PawnNode* pawnNode) {
     
     if (this->first == 0) {

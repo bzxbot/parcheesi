@@ -19,7 +19,7 @@ class Board {
         static const int Size = 68;
         static const int End = -8;
         static const int Nest = 0;
-        Board();
+        Board(Player* player);
         void movePawn(int diceRoll, Player* player, Pawn* pawn);
         bool checkCapture(int position);
         int nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition);

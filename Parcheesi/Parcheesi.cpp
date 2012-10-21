@@ -101,10 +101,8 @@ void Parcheesi::start() {
 }
 
 Parcheesi::Parcheesi() {
-    board = new Board();
     window = new GlutWindow(&Parcheesi::render, &Parcheesi::animation);
     renderer = new GlRenderer();
-    renderer->registerRender(new GlBoardRenderer(board));
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
@@ -135,6 +133,9 @@ Parcheesi::Parcheesi() {
         player = player->getNextPlayer();
     }
     
+    board = new Board(firstPlayer);
+    
+    renderer->registerRender(new GlBoardRenderer(board));
     
     this->firstPlayer = firstPlayer;
     this->currentPlayer = this->firstPlayer;

@@ -9,6 +9,7 @@ void GlRenderer::render() {
     
     while(renderer != 0) {
         renderer->render();
+        
         renderer = renderer->getNext();
     }
 }

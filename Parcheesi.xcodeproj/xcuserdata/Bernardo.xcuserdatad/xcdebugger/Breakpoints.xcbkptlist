@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Parcheesi/PawnList.cpp"
-         timestampString = "372066522.711457"
+         timestampString = "372482398.67553"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "5"
-         endingLineNumber = "5"
+         startingLineNumber = "9"
+         endingLineNumber = "9"
          landmarkName = "PawnList::add(PawnNode* pawnNode)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,12 +21,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Parcheesi/Parcheesi.cpp"
-         timestampString = "372479578.358093"
+         timestampString = "372482307.085968"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "124"
-         endingLineNumber = "124"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
          landmarkName = "Parcheesi::Parcheesi()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Parcheesi/Parcheesi.cpp"
+         timestampString = "372481675.779252"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "Parcheesi::animation()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Parcheesi/Board.cpp"
+         timestampString = "372483011.228015"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "6"
+         endingLineNumber = "6"
+         landmarkName = "Board::Board(Player* player)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

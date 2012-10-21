@@ -9,6 +9,7 @@ class PawnList {
     private:
         PawnNode* first;
     public:
+        PawnList();
         PawnNode* getFirst();
         void add(PawnNode* node);
         void remove(PawnNode* node);

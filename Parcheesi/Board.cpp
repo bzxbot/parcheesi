@@ -1,7 +1,18 @@
 #include "Board.h"
 
-Board::Board() {
+Board::Board(Player* player) {
     board = new BoardSpace[Board::Size];
+
+    Player* p = player;
+    bool first = true;
+    
+    while (p != player || first) {
+        first = false;
+        
+        this->board[p->getFirstPawn()->getPosition() - 1].pawnList->add(new PawnNode(p->getFirstPawn()));
+        
+        p = p->getNextPlayer();
+    }
 }
 
 void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
@@ -37,7 +48,11 @@ bool Board::checkCapture(int position) {
             return false;
     }
     
-    return this->board[position].pawnList->getFirst()->getNext() != 0;
+    int index = position - 1;
+    
+    if (this->board[index].pawnList->getFirst())
+        return this->board[index].pawnList->getFirst()->getNext() != 0;
+    return false;
 }
 
 int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition) {
@@ -45,15 +60,17 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
         return startingPosition;
     } else if (currentPosition > Board::Nest) {
         bool end = false;
-        
-        for(int i = 1; i <= diceRoll; i++) {
-            if (currentPosition + i > endingPosition) {
+        int i;
+        for(i = 1; i <= diceRoll; i++) {
+            if (currentPosition + i == endingPosition) {
                 end = true;
                 break;
             }
         }
         
-        if (end) {
+        if (end && i == diceRoll) {
+            return endingPosition;
+        } else if (end) {
             int remaining = endingPosition - currentPosition;
             
             return remaining - diceRoll;
