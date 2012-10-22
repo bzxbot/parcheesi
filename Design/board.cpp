@@ -9,7 +9,7 @@
 
 #define PI 3.14159265
 
-GLuint pawnPlus, pawnMinus, pawnL, pawnOnly;
+GLuint pawnPlus, pawnMinus, pawnL, pawnOnly, board;
 
 //<<<<<<<<<<<<<<<<<<<<<<<< Create Canvas >>>>>>>>>>>
 Canvas cvs(screenWidth, screenHeight, "Parcheesi v1.0");
@@ -28,12 +28,47 @@ void drawPlayerPlace(float r, float g, float b){
 		glVertex2f(21,23);
 		glVertex2f(3,23);
 	glEnd();
+	
+	// Line Polygon
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glBegin(GL_POLYGON);
+		glColor3f(r*0.4,g*0.4,b*0.4);
+		glVertex2f(1,2.7);
+		glVertex2f(2.7,1);
+		
+		glVertex2f(22,1);
+		
+		glVertex2f(22,20.3);
+		glVertex2f(20.3,22);
+		
+		glVertex2f(1,22);
+		
+	glEnd();
+
+	// Line Polygon #2
+	glLineWidth(2.0);
+	glBegin(GL_POLYGON);
+		glColor3f(r*0.4,g*0.4,b*0.4);
+		glVertex2f(0.5,2.5);
+		glVertex2f(2.5,0.5);
+		
+		glVertex2f(22.5,0.5);
+		
+		glVertex2f(22.5,20.5);
+		glVertex2f(20.5,22.5);
+		
+		glVertex2f(0.5,22.5);
+		
+	glEnd();
+	
+	glLineWidth(1.0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	// Turtle Graphics Star
 	int n = 60;
 	glColor3f(r*0.5,g*0.5,b*0.5);
 	cvs.moveTo(14, 10);
-	cvs.turn(-(36-24));
+	cvs.turnTo(-(36-24));
 		
 	for(int i = 1; i <=n; i++)
 	{
@@ -43,6 +78,31 @@ void drawPlayerPlace(float r, float g, float b){
 			cvs.forward(5,1);
 		}
 	}
+	glBegin(GL_POLYGON);
+		glColor3f(r*0.7,g*0.7,b*0.7);
+		glVertex2f(12,16);
+		glVertex2f(13,15);
+		glVertex2f(18,15);
+		glVertex2f(19,16);
+		glVertex2f(19,21);
+		glVertex2f(18,22);
+		glVertex2f(13,22);
+		glVertex2f(12,21);
+	glEnd();
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glBegin(GL_POLYGON);
+		glColor3f(r*0.5,g*0.5,b*0.5);
+		glVertex2f(12,16);
+		glVertex2f(13,15);
+		glVertex2f(18,15);
+		glVertex2f(19,16);
+		glVertex2f(19,21);
+		glVertex2f(18,22);
+		glVertex2f(13,22);
+		glVertex2f(12,21);
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 
@@ -228,7 +288,9 @@ void drawSafeSpots(){
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< drawTable >>>>>>>>>>>>>>>
-void drawTable(){
+void generateBoardDList(){
+	board = glGenLists(1);
+	glNewList(board, GL_COMPILE);
 	cvs.setWindow(-0.01,24.0,0.0,24.01);
 	drawSafeSpots();
 	/********************
@@ -285,6 +347,35 @@ void drawTable(){
 	cvs.setWindow(24,0,24,0);
 	cvs.setViewport(200+2*192, 200+3*192, 10-3+2*192,10-3+3*192);
 	drawPlayerPlace(0,1,0);
+	glEndList();
+}
+
+void drawMenuScreen(){
+	/************** BACKGROUND *************/
+	// BLUE
+	cvs.setWindow(0,24,0,24);
+	glViewport(120,20,290,290);
+	drawPlayerPlace(0,0,1);
+
+	// RED
+	cvs.setWindow(24,0,0,24);
+	glViewport(screenWidth-120-290,20,290,290);
+	drawPlayerPlace(1,0,0);
+
+	// YELLOW
+	cvs.setWindow(0,24,24,0);
+	glViewport(120,screenHeight-20-290,290,290);
+	drawPlayerPlace(1,1,0);
+
+	// GREEN
+	cvs.setWindow(24,0,24,0);
+	glViewport(screenWidth-120-290,screenHeight-20-290,290,290);
+	drawPlayerPlace(0,1,0);
+	/************** TITLE ****************/
+
+
+	/************** MENU *****************/
+
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< drawCircle >>>>>>>>>>>>>>
@@ -368,7 +459,10 @@ void display(void)
 	cvs.clearScreen();
 	cvs.setBackgroundColor(1.0, 1.0, 1.0);
 	cvs.setColor(1.0, 1.0, 1.0);
-	drawTable();
+	
+//	drawMenuScreen();
+	
+	glCallList(board);
 
 	// Draw Little Pawns
 	glColor3f(1,0,0);
@@ -403,7 +497,7 @@ void display(void)
 	glColor3f(1,0,0);
 	glViewport(80, 300, 50, 50);
 	glCallList(pawnL);
-	
+
 	glFlush();
 }
 
@@ -412,6 +506,7 @@ int main(int argc, char** argv) {
 	cvs.setBackgroundColor(1.0, 1.0, 1.0);
 	// Window is opened in the Canvas constructor
 	generatePawnDLists();
+	generateBoardDList();
 	glutDisplayFunc(display);
 	glutMainLoop();
 	return 0;
