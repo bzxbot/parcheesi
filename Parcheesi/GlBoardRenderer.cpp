@@ -180,9 +180,9 @@ void GlBoardRenderer::drawSafeSpots(){
 	r = g = b = 0.9;
 	glViewport(200+192+64,10+2,64,24); // Down
 	drawSingleSpot(r,g,b);
-	glViewport(200+192+64+64,10+2+4*24,64,24);
+	glViewport(200+192+64+64,10+3+4*24,64,24);
 	drawSingleSpot(1,0,0);
-	glViewport(200+192+64-64,10+2+4*24,64,24);
+	glViewport(200+192+64-64,10+3+4*24,64,24);
 	drawSingleSpot(r,g,b);
     
 	glViewport(200+192+64,3*192-18,64,24); // Up
@@ -214,14 +214,14 @@ void GlBoardRenderer::drawTable(){
 	/********************
      Bottom
      ********************/
-	cvs.setWindow(24.01,0.0,24.0,0.0);
-	cvs.setViewport(200+192, 200+2*192, 10+2,10+2+192);
+	cvs.setWindow(24.01,0.0,24.01,0.0);
+	cvs.setViewport(200+192, 200+2*192, 10+3,10+3+192);
 	drawVertical(1,0,0);
 	
 	/********************
      Up
      ********************/
-	cvs.setWindow(-0.01,24.0,0.0,24.01);
+	cvs.setWindow(-0.01,24.0,-0.01,24.01);
 	cvs.setViewport(200+192, 200+2*192, 10-3+2*192,10-3+3*192);
 	drawVertical(1,1,0);
     
@@ -234,7 +234,7 @@ void GlBoardRenderer::drawTable(){
 	/********************
      Left
      ********************/
-	cvs.setWindow(24.01,0.0,0.0,24.01);
+	cvs.setWindow(24.01,0.0,-0.01,24.01);
 	cvs.setViewport(200+3, 200+3+192, 10+192,10+2*192);
 	drawHorizontal(0,0,1);
     
