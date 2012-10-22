@@ -28,7 +28,6 @@ void GlBoardRenderer::render() {
     
     glEnd();
     glFlush();
-    
 }
 
 IObjectRenderer* GlBoardRenderer::getNext() {

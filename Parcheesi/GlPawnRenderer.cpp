@@ -11,10 +11,10 @@ void GlPawnRenderer::render() {
     
     glColor3f(1, 0, 0);
     
-    int x1 = 50;
-    int y1 = 50;
-    int x2 = 25;
-    int y2 = 25;
+    int x1 = this->pawn->getPosition();
+    int y1 = this->pawn->getPosition();
+    int x2 = this->pawn->getPosition() + 20;
+    int y2 = this->pawn->getPosition() + 20;
     
     glVertex2d(x1, y1);
     glVertex2d(x1, y2);

@@ -33,8 +33,8 @@ class Parcheesi {
         int diceRoll();
         int nextPawnPosition(int currentPosition, int diceRoll, int endingPosition);
         PawnList* getPlayablePawns(int diceRoll);
-        static void render();
-        static void animation();
+        static void display();
+        static void timer();
     public:
         void start();
         static Parcheesi* getInstance();

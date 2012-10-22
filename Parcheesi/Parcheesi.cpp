@@ -65,16 +65,15 @@ PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
     return pawnList;
 }
 
-void Parcheesi::render() {
+void Parcheesi::display() {
     instance->renderer->render();
 }
 
-void Parcheesi::animation() {
-    
+void Parcheesi::timer() {
     instance->turn();
     
     instance->window->redisplay();
-
+    
     if (instance->isGameOver())
         instance->gameOver();
 }
@@ -101,7 +100,7 @@ void Parcheesi::start() {
 }
 
 Parcheesi::Parcheesi() {
-    window = new GlutWindow(&Parcheesi::render, &Parcheesi::animation);
+    window = new GlutWindow(&Parcheesi::display, &Parcheesi::timer);
     renderer = new GlRenderer();
     
     // TODO: Randomize the players.
