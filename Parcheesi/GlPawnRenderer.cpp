@@ -115,9 +115,51 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
         boardSpacePositions[i][2] = posXBoard - 29;
         boardSpacePositions[i][3] = posYBoard;
     }
+    
+    //Initialize startPositions
+    startPositions[this->getColorIndex(Color::Blue)][0][0] = 228;
+    startPositions[this->getColorIndex(Color::Blue)][0][1] = 162;
+    startPositions[this->getColorIndex(Color::Blue)][1][0] = 228;
+    startPositions[this->getColorIndex(Color::Blue)][1][1] = 58;
+    startPositions[this->getColorIndex(Color::Blue)][2][0] = 338;
+    startPositions[this->getColorIndex(Color::Blue)][2][1] = 162;
+    startPositions[this->getColorIndex(Color::Blue)][3][0] = 338;
+    startPositions[this->getColorIndex(Color::Blue)][3][1] = 58;
+    
+    
+    startPositions[this->getColorIndex(Color::Red)][0][0] = 628;
+    startPositions[this->getColorIndex(Color::Red)][0][1] = 162;
+    startPositions[this->getColorIndex(Color::Red)][1][0] = 628;
+    startPositions[this->getColorIndex(Color::Red)][1][1] = 58;
+    startPositions[this->getColorIndex(Color::Red)][2][0] = 738;
+    startPositions[this->getColorIndex(Color::Red)][2][1] = 162;
+    startPositions[this->getColorIndex(Color::Red)][3][0] = 738;
+    startPositions[this->getColorIndex(Color::Red)][3][1] = 58;
+    
+    
+    startPositions[this->getColorIndex(Color::Green)][0][0] = 628;
+    startPositions[this->getColorIndex(Color::Green)][0][1] = 441;
+    startPositions[this->getColorIndex(Color::Green)][1][0] = 628;
+    startPositions[this->getColorIndex(Color::Green)][1][1] = 545;
+    startPositions[this->getColorIndex(Color::Green)][2][0] = 738;
+    startPositions[this->getColorIndex(Color::Green)][2][1] = 441;
+    startPositions[this->getColorIndex(Color::Green)][3][0] = 738;
+    startPositions[this->getColorIndex(Color::Green)][3][1] = 545;
+    
+    
+    startPositions[this->getColorIndex(Color::Yellow)][0][0] = 338;
+    startPositions[this->getColorIndex(Color::Yellow)][0][1] = 441;
+    startPositions[this->getColorIndex(Color::Yellow)][1][0] = 338;
+    startPositions[this->getColorIndex(Color::Yellow)][1][1] = 545;
+    startPositions[this->getColorIndex(Color::Yellow)][2][0] = 228;
+    startPositions[this->getColorIndex(Color::Yellow)][2][1] = 441;
+    startPositions[this->getColorIndex(Color::Yellow)][3][0] = 228;
+    startPositions[this->getColorIndex(Color::Yellow)][3][1] = 545;
 }
 
 void GlPawnRenderer::render() {
+    int x1, y1, x2, y2;
+    
     glBegin(GL_QUADS);
     
     switch (this->pawn->getColor()) {
@@ -134,10 +176,17 @@ void GlPawnRenderer::render() {
             glColor3f(1.0, 1.0, 0.0);
     }
     
-    int x1 = boardSpacePositions[this->pawn->getPosition()-1][0] - 10;
-    int y1 = boardSpacePositions[this->pawn->getPosition()-1][1] - 10;
-    int x2 = boardSpacePositions[this->pawn->getPosition()-1][0] + 10;
-    int y2 = boardSpacePositions[this->pawn->getPosition()-1][1] + 10;
+    if (this->pawn->getPosition() >= 1 && this->pawn->getPosition() <= Board::Size) {
+        x1 = boardSpacePositions[this->pawn->getPosition()-1][0] - 10;
+        y1 = boardSpacePositions[this->pawn->getPosition()-1][1] - 10;
+        x2 = boardSpacePositions[this->pawn->getPosition()-1][0] + 10;
+        y2 = boardSpacePositions[this->pawn->getPosition()-1][1] + 10;
+    } else if (this->pawn->getPosition() == 0) {
+        x1 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0] - 10;
+        y1 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1] - 10;
+        x2 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0] + 10;
+        y2 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1] + 10;
+    }
     
     glVertex2d(x1, y1);
     glVertex2d(x1, y2);
@@ -154,4 +203,24 @@ IObjectRenderer* GlPawnRenderer::getNext() {
 
 void GlPawnRenderer::setNext(IObjectRenderer *next) {
     this->next = next;
+}
+
+int GlPawnRenderer::getColorIndex(Color color) {
+    int index;
+    
+    switch (color) {
+        case Color::Blue:
+            index = 0;
+            break;
+        case Color::Green:
+            index = 1;
+            break;
+        case Color::Red:
+            index = 2;
+            break;
+        default:
+            index = 3;
+    }
+    
+    return index;
 }
