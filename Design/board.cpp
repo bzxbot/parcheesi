@@ -14,6 +14,38 @@ GLuint pawnPlus, pawnMinus, pawnL, pawnOnly;
 //<<<<<<<<<<<<<<<<<<<<<<<< Create Canvas >>>>>>>>>>>
 Canvas cvs(screenWidth, screenHeight, "Parcheesi v1.0");
 
+void drawPlayerPlace(float r, float g, float b){
+	// Background Polygon
+	glBegin(GL_POLYGON);
+		glColor3f(r*0.7,g*0.7,b*0.7);
+		glVertex2f(0,23);
+		glVertex2f(0,2);
+		glVertex2f(2,0);
+		glVertex2f(23,0);
+		glColor3f(r*0.5,g*0.5,b*0.5);
+		glVertex2f(23,3);
+		glVertex2f(23,21);
+		glVertex2f(21,23);
+		glVertex2f(3,23);
+	glEnd();
+
+	// Turtle Graphics Star
+	int n = 60;
+	glColor3f(r*0.5,g*0.5,b*0.5);
+	cvs.moveTo(14, 10);
+	cvs.turn(-(36-24));
+		
+	for(int i = 1; i <=n; i++)
+	{
+		cvs.turn(-24);
+		for(int j = 1; j <10; j++){
+			cvs.turn(j*36);
+			cvs.forward(5,1);
+		}
+	}
+}
+
+
 void drawVertical(float r, float g, float b){
 	int x = 8, y = 3;
 	// Middle Stripe Color
@@ -232,6 +264,27 @@ void drawTable(){
 	cvs.setWindow(-0.01,24.0,0.0,24.01);
 	cvs.setViewport(200+192-24, 200+2*192+24, 10+192-24,10+2*192+24);
 	drawCentral();
+
+	// BLUE
+	cvs.setWindow(0,24,0,24);
+	cvs.setViewport(200, 200+192, 10+2,10+2+192);
+	drawPlayerPlace(0,0,1);
+
+	// RED
+	
+	cvs.setWindow(24,0,0,24);
+	cvs.setViewport(200+2*192, 200+3*192, 10+2,10+2+192);
+	drawPlayerPlace(1,0,0);
+
+	// YELLOW
+	cvs.setWindow(0,24,24,0);
+	cvs.setViewport(200, 200+192, 10-3+2*192,10-3+3*192);
+	drawPlayerPlace(1,1,0);
+
+	// GREEN
+	cvs.setWindow(24,0,24,0);
+	cvs.setViewport(200+2*192, 200+3*192, 10-3+2*192,10-3+3*192);
+	drawPlayerPlace(0,1,0);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< drawCircle >>>>>>>>>>>>>>
