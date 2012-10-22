@@ -18,6 +18,8 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, 800, 0, 600);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(1, 1, 1, 0);
 }
 
 void GlutWindow::display() {
@@ -31,7 +33,6 @@ void GlutWindow::display() {
 void GlutWindow::clear() {
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(1, 1, 1, 0);
-
 }
 
 void GlutWindow::show() {
