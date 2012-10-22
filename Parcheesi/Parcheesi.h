@@ -5,6 +5,7 @@
 #include "PawnList.h"
 #include "GlutWindow.h"
 #include "GlRenderer.h"
+#include "Color.h"
 
 #include "iostream"
 

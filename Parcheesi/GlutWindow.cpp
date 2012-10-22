@@ -15,11 +15,18 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
     glutInitWindowSize(800, 600);
     glutCreateWindow("Parcheesi");
     glutDisplayFunc(display);
+    glutMouseFunc(mouse);
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, 800, 0, 600);
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(1, 1, 1, 0);
+}
+
+void GlutWindow::mouse(int button, int state, int x, int y) {
+    if (state == GLUT_DOWN) {
+        std::cout << "Pressed: " << x << ", " << 600-y << "\n";
+    }
 }
 
 void GlutWindow::display() {

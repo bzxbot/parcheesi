@@ -21,9 +21,8 @@ void GlRenderer::registerRender(IObjectRenderer* renderer) {
         IObjectRenderer* previous = this->renderer;
         IObjectRenderer* current = previous;
         while(current->getNext() != 0) {
-            previous = current;
             current = current->getNext();
         }
-        previous->setNext(renderer);
+        current->setNext(renderer);
     }
 }

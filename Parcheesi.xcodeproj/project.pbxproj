@@ -41,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF6C84B21634EC870096E8F3 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		D124964616334CB100C38933 /* GlPawnRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlPawnRenderer.cpp; sourceTree = "<group>"; };
 		D124964716334CB100C38933 /* GlPawnRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlPawnRenderer.h; sourceTree = "<group>"; };
 		D12DD3EF162CF57E00470DCD /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 				D180BF10162CECEC00AF873D /* Board.h */,
 				D12DD3F3162CF6FC00470DCD /* Player.h */,
 				D12DD3F6162CF75800470DCD /* Pawn.h */,
+				AF6C84B21634EC870096E8F3 /* Color.h */,
 				D12DD3FC162D0C8900470DCD /* PawnList.h */,
 				D12DD3FF162D0CAA00470DCD /* PawnNode.h */,
 				D12DD402162D2AD300470DCD /* BoardSpace.h */,

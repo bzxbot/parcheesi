@@ -109,8 +109,8 @@ Parcheesi::Parcheesi() {
     //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
     //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
     
-    Player* firstPlayer = new Player(Player::Type::Robot, Player::Color::Blue, 20, 15);
-    Player* secondPlayer = new Player(Player::Type::Robot, Player::Color::Red, 26, 15);
+    Player* firstPlayer = new Player(Player::Type::Robot, Color::Blue, 20, 15);
+    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 26, 15);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);
@@ -118,10 +118,16 @@ Parcheesi::Parcheesi() {
     //    forthPlayer->setNextPlayer(firstPlayer);
     secondPlayer->setNextPlayer(firstPlayer);
     
-    Player* player = firstPlayer->getNextPlayer();
+    board = new Board(firstPlayer);
     
-    while (player != firstPlayer) {
-        Pawn* pawn = firstPlayer->getFirstPawn();
+    renderer->registerRender(new GlBoardRenderer(board));
+    
+    Player* player = firstPlayer;
+    bool first = true;
+    
+    while (player != firstPlayer || first) {
+        first = false;
+        Pawn* pawn = player->getFirstPawn();
         
         while(pawn != 0) {
             renderer->registerRender(new GlPawnRenderer(pawn));
@@ -131,11 +137,7 @@ Parcheesi::Parcheesi() {
         
         player = player->getNextPlayer();
     }
-    
-    board = new Board(firstPlayer);
-    
-    renderer->registerRender(new GlBoardRenderer(board));
-    
+
     this->firstPlayer = firstPlayer;
     this->currentPlayer = this->firstPlayer;
 }

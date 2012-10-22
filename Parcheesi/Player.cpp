@@ -1,10 +1,10 @@
 #include "Player.h"
 
 Player::Player(Type type, Color color, int startingPosition, int endingPosition) {
-    Pawn* firstPawn = new Pawn(startingPosition);
-    Pawn* secondPawn = new Pawn(Board::Nest);
-    Pawn* thirdPawn = new Pawn(Board::Nest);
-    Pawn* forthPawn = new Pawn(Board::Nest);
+    Pawn* firstPawn = new Pawn(startingPosition, color);
+    Pawn* secondPawn = new Pawn(Board::Nest, color);
+    Pawn* thirdPawn = new Pawn(Board::Nest, color);
+    Pawn* forthPawn = new Pawn(Board::Nest, color);
     
     firstPawn->setNextPawn(secondPawn);
     secondPawn->setNextPawn(thirdPawn);
@@ -13,7 +13,6 @@ Player::Player(Type type, Color color, int startingPosition, int endingPosition)
     
     this->firstPawn = firstPawn;
     this->type = type;
-    this->color = color;
     this->startingPosition = startingPosition;
     this->endingPosition = endingPosition;
 }

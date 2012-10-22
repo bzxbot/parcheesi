@@ -1,7 +1,8 @@
 #include "Pawn.h"
 
-Pawn::Pawn(int position) {
+Pawn::Pawn(int position, Color color) {
     this->position = position;
+    this->color = color;
 }
 
 void Pawn::setNextPawn(Pawn* nextPawn) {
@@ -18,4 +19,8 @@ int Pawn::getPosition() {
 
 void Pawn::setPosition(int position) {
     this->position = position;
+}
+
+Color Pawn::getColor() {
+    return this->color;
 }

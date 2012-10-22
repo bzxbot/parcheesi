@@ -2,17 +2,12 @@
 #define Parcheesi_Player
 
 #include "Pawn.h"
+#include "Color.h"
 
 class Pawn;
 
 class Player {
     public:
-        enum Color {
-            Blue,
-            Red,
-            Green,
-            Yellow
-        };
         enum Type {
             Human,
             Robot
@@ -27,7 +22,6 @@ class Player {
     private:
         Player* nextPlayer;
         Pawn* firstPawn;
-        Color color;
         Type type;
         int startingPosition;
         int endingPosition;

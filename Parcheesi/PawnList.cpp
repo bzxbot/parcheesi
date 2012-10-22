@@ -12,10 +12,9 @@ void PawnList::add(PawnNode* pawnNode) {
         PawnNode* previous = this->first;
         PawnNode* current = previous;
         while(current->getNext() != 0) {
-            previous = current;
             current = current->getNext();
         }
-        previous->setNext(pawnNode);
+        current->setNext(pawnNode);
     }
 }
 
