@@ -42,5 +42,18 @@
          landmarkName = "Parcheesi::Parcheesi()"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Parcheesi/GlutWindow.cpp"
+         timestampString = "372563825.428945"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "17"
+         endingLineNumber = "17"
+         landmarkName = "GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)())"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

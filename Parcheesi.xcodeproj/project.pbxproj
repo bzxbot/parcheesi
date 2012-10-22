@@ -56,6 +56,7 @@
 		D12DD402162D2AD300470DCD /* BoardSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardSpace.h; sourceTree = "<group>"; };
 		D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IObjectRenderer.cpp; sourceTree = "<group>"; };
 		D177E5591633975B00CD1FDB /* IObjectRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IObjectRenderer.h; sourceTree = "<group>"; };
+		D177E55C1634D5A100CD1FDB /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		D180BEFF162CECB900AF873D /* Parcheesi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Parcheesi; sourceTree = BUILT_PRODUCTS_DIR; };
 		D180BF05162CECB900AF873D /* Parcheesi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Parcheesi.1; sourceTree = "<group>"; };
 		D180BF0C162CECDF00AF873D /* Parcheesi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parcheesi.cpp; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 				D1CD59DA1633450F005979C8 /* GlBoardRenderer.h */,
 				D124964716334CB100C38933 /* GlPawnRenderer.h */,
 				D177E5591633975B00CD1FDB /* IObjectRenderer.h */,
+				D177E55C1634D5A100CD1FDB /* Canvas.h */,
 				D12DD3EF162CF57E00470DCD /* Main.cpp */,
 				D180BF0C162CECDF00AF873D /* Parcheesi.cpp */,
 				D180BF0F162CECEC00AF873D /* Board.cpp */,

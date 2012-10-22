@@ -7,6 +7,7 @@ class GlutWindow {
         static void display();
         static void (*timerFunction)();
         static void (*displayFunction)();
+        static void clear();
     public:
         GlutWindow(void (*displayFunction)(), void (*timerFunction)());
         void show();

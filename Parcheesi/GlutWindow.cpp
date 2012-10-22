@@ -12,34 +12,37 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
     
     glutInit(&argc, 0);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(500, 300);
+    glutInitWindowSize(800, 600);
     glutCreateWindow("Parcheesi");
     glutDisplayFunc(display);
-    glutTimerFunc(1000/20, timer, 0);
+}
+
+void GlutWindow::display() {
+    GlutWindow::clear();
+    
+    GlutWindow::displayFunction();
+    
+    glutSwapBuffers();
+}
+
+void GlutWindow::clear() {
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(1, 1, 1, 0);
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0, 500, 0, 300);
-}
-
-void GlutWindow::display() {
-    GlutWindow::displayFunction();
-    glutSwapBuffers();
+	gluOrtho2D(0, 800, 0, 600);
 }
 
 void GlutWindow::show() {
+    glutTimerFunc(1000, timer, 0);
     glutMainLoop();
 }
 
 void GlutWindow::timer(int v) {
     GlutWindow::timerFunction();
-
     glutTimerFunc(1000, timer, 0);
 }
 
 void GlutWindow::redisplay() {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(1, 1, 1, 0);
     glutPostRedisplay();
 }
