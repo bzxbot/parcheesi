@@ -126,7 +126,6 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
     startPositions[this->getColorIndex(Color::Blue)][3][0] = 338;
     startPositions[this->getColorIndex(Color::Blue)][3][1] = 58;
     
-    
     startPositions[this->getColorIndex(Color::Red)][0][0] = 628;
     startPositions[this->getColorIndex(Color::Red)][0][1] = 162;
     startPositions[this->getColorIndex(Color::Red)][1][0] = 628;
@@ -136,7 +135,6 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
     startPositions[this->getColorIndex(Color::Red)][3][0] = 738;
     startPositions[this->getColorIndex(Color::Red)][3][1] = 58;
     
-    
     startPositions[this->getColorIndex(Color::Green)][0][0] = 628;
     startPositions[this->getColorIndex(Color::Green)][0][1] = 441;
     startPositions[this->getColorIndex(Color::Green)][1][0] = 628;
@@ -145,7 +143,6 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
     startPositions[this->getColorIndex(Color::Green)][2][1] = 441;
     startPositions[this->getColorIndex(Color::Green)][3][0] = 738;
     startPositions[this->getColorIndex(Color::Green)][3][1] = 545;
-    
     
     startPositions[this->getColorIndex(Color::Yellow)][0][0] = 338;
     startPositions[this->getColorIndex(Color::Yellow)][0][1] = 441;
@@ -167,6 +164,12 @@ void GlPawnRenderer::calculatePawnPosition() {
     if (this->pawn->getPosition() >= 1 && this->pawn->getPosition() <= Board::Size) {
         goal[0] = boardSpacePositions[this->pawn->getPosition()-1][0];
         goal[1] = boardSpacePositions[this->pawn->getPosition()-1][1];
+        
+        if (this->pawn->getPosition() != this->pawn->getPlayer()->getStartingPosition()) {
+            //this->pawn->setCoordinates(goal[0], goal[1]);
+            //Parcheesi::getInstance()->dequeueAnimation();
+            //return;
+        }
     } else {
         goal[0] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0];
         goal[1] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1];

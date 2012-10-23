@@ -11,7 +11,7 @@ class Pawn;
 
 class GlPawnRenderer : public IObjectRenderer {
     private:
-        static const int speed = 2;
+        static const int speed = 1;
         Pawn* pawn;
         int boardSpacePositions[68][4]; //TODO - change
         int startPositions[4][4][2];

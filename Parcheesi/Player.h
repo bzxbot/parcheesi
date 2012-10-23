@@ -19,12 +19,16 @@ class Player {
         int getStartingPosition();
         int getEndingPosition();
         Type getPlayerType();
+        void capture();
+        void useCapture(Pawn* pawn);
+        bool hasCaptured();
     private:
         Player* nextPlayer;
         Pawn* firstPawn;
         Type type;
         int startingPosition;
         int endingPosition;
+        bool captured;
 };
 
 #endif

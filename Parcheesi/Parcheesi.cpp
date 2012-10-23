@@ -71,14 +71,14 @@ void Parcheesi::display() {
 
 void Parcheesi::enqueueAnimation()
 {
-    instance->animations++;
+    this->animations++;
 }
 
 void Parcheesi::dequeueAnimation()
 {
-    instance->animations--;
-    if (instance->animations < 0) {
-        instance->animations = 0;
+    this->animations--;
+    if (this->animations < 0) {
+        this->animations = 0;
     }
 }
 
@@ -87,7 +87,9 @@ bool Parcheesi::canRollTheDice() {
 }
 
 void Parcheesi::timer() {
-    if (instance->canRollTheDice()) {
+    if (instance->currentPlayer->hasCaptured()) {
+//        instance->currentPlayer->useCapture(<#Pawn *pawn#>)
+    } else if (instance->canRollTheDice()) {
         instance->turn();
     }
     
@@ -105,13 +107,14 @@ void Parcheesi::gameOver() {
 }
 
 int Parcheesi::diceRoll() {
-    if (previousRoll == 2) {
-        previousRoll = 4;
-    } else {
-        previousRoll = 2;
-    }
+//    if (previousRoll == 2) {
+//        previousRoll = 4;
+//    } else {
+//        previousRoll = 2;
+//    }
     
-    return previousRoll;
+//    return previousRoll;
+    return rand()%6+1;
 }
 
 void Parcheesi::start() {
@@ -119,6 +122,8 @@ void Parcheesi::start() {
 }
 
 Parcheesi::Parcheesi() {
+    srand((unsigned int)time(NULL));
+    
     window = new GlutWindow(&Parcheesi::display, &Parcheesi::timer);
     renderer = new GlRenderer();
     
@@ -128,8 +133,8 @@ Parcheesi::Parcheesi() {
     //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
     //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
     
-    Player* firstPlayer = new Player(Player::Type::Robot, Color::Blue, 20, 15);
-    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 26, 15);
+    Player* firstPlayer = new Player(Player::Type::Robot, Color::Blue, 24, 15);
+    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 15);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);

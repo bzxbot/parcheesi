@@ -26,7 +26,9 @@ void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
     if (newPosition > Board::Nest) {
     
         this->board[newIndex].pawnList->add(new PawnNode(pawn));
-        this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
+        
+        if (currentPosition != 0)
+            this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
     
         if (checkCapture(newPosition)) {
             

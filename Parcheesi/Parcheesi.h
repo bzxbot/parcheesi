@@ -8,6 +8,8 @@
 #include "Color.h"
 
 #include "iostream"
+#include <time.h>
+#include <stdio.h>
 
 class Board;
 class GlRenderer;
