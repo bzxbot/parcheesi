@@ -26,8 +26,10 @@ class Parcheesi {
     
         static Parcheesi* instance;
     
-        int previousRoll = 2 ;
+        int previousRoll = 2;
+        int animations = 0;
     
+        bool canRollTheDice();
         void turn();
         bool isGameOver();
         void gameOver();
@@ -39,6 +41,8 @@ class Parcheesi {
     public:
         void start();
         static Parcheesi* getInstance();
+        void enqueueAnimation();
+        void dequeueAnimation();
 };
 
 

@@ -157,8 +157,58 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
     startPositions[this->getColorIndex(Color::Yellow)][3][1] = 545;
 }
 
+void GlPawnRenderer::calculatePawnPosition() {
+    float goal[2], pawnPosition[2];
+    float size, v[2];
+    
+    pawnPosition[0] = this->pawn->getXCoordinate();
+    pawnPosition[1] = this->pawn->getYCoordinate();
+    
+    if (this->pawn->getPosition() >= 1 && this->pawn->getPosition() <= Board::Size) {
+        goal[0] = boardSpacePositions[this->pawn->getPosition()-1][0];
+        goal[1] = boardSpacePositions[this->pawn->getPosition()-1][1];
+    } else {
+        goal[0] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0];
+        goal[1] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1];
+        
+        if (pawnPosition[0] == 0.0 && pawnPosition[1] == 0.0) {
+            this->pawn->setCoordinates(goal[0], goal[1]);
+            Parcheesi::getInstance()->dequeueAnimation();
+            return;
+        }
+    }
+    
+    if (goal[0] == pawnPosition[0] && goal[1] == pawnPosition[1])
+        return;
+    
+    v[0] = goal[0] - pawnPosition[0];
+    v[1] = goal[1] - pawnPosition[1];
+    
+    size = sqrt(v[0]*v[0]+v[1]*v[1]);
+    
+    if (size != 0.0)
+    {
+        v[0] = v[0]*this->speed/size + pawnPosition[0];
+        v[1] = v[1]*this->speed/size + pawnPosition[1];
+        
+        if (v[0] <= goal[0]+2*this->speed && v[0] >= goal[0]-2*this->speed) { //Avoid oscilations
+            v[0] = goal[0];
+        }
+        
+        if (v[1] <= goal[1]+2*this->speed && v[1] >= goal[1]-2*this->speed) { //Avoid oscilations
+            v[1] = goal[1];
+        }
+        
+        if (v[0] == goal[0] && v[1] == goal[1]) {
+            Parcheesi::getInstance()->dequeueAnimation();
+        }
+        
+        this->pawn->setCoordinates(v[0], v[1]);
+    }
+}
+
 void GlPawnRenderer::render() {
-    int x1, y1, x2, y2;
+    float p1[2], p2[2];
     
     glBegin(GL_QUADS);
     
@@ -176,22 +226,17 @@ void GlPawnRenderer::render() {
             glColor3f(1.0, 1.0, 0.0);
     }
     
-    if (this->pawn->getPosition() >= 1 && this->pawn->getPosition() <= Board::Size) {
-        x1 = boardSpacePositions[this->pawn->getPosition()-1][0] - 10;
-        y1 = boardSpacePositions[this->pawn->getPosition()-1][1] - 10;
-        x2 = boardSpacePositions[this->pawn->getPosition()-1][0] + 10;
-        y2 = boardSpacePositions[this->pawn->getPosition()-1][1] + 10;
-    } else if (this->pawn->getPosition() == 0) {
-        x1 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0] - 10;
-        y1 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1] - 10;
-        x2 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0] + 10;
-        y2 = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1] + 10;
-    }
+    this->calculatePawnPosition();
     
-    glVertex2d(x1, y1);
-    glVertex2d(x1, y2);
-    glVertex2d(x2, y2);
-    glVertex2d(x2, y1);
+    p1[0] = this->pawn->getXCoordinate() - 10;
+    p1[1] = this->pawn->getYCoordinate() - 10;
+    p2[0] = this->pawn->getXCoordinate() + 10;
+    p2[1] = this->pawn->getYCoordinate() + 10;
+    
+    glVertex2d((int)p1[0], (int)p1[1]);
+    glVertex2d((int)p1[0], (int)p2[1]);
+    glVertex2d((int)p2[0], (int)p2[1]);
+    glVertex2d((int)p2[0], (int)p1[1]);
     
     glEnd();
     glFlush();

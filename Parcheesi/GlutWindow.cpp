@@ -43,13 +43,13 @@ void GlutWindow::clear() {
 }
 
 void GlutWindow::show() {
-    glutTimerFunc(1000, timer, 0);
+    glutTimerFunc(10, timer, 0);
     glutMainLoop();
 }
 
 void GlutWindow::timer(int v) {
     GlutWindow::timerFunction();
-    glutTimerFunc(1000, timer, 0);
+    glutTimerFunc(10, timer, 0);
 }
 
 void GlutWindow::redisplay() {

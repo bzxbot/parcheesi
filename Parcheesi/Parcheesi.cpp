@@ -69,8 +69,27 @@ void Parcheesi::display() {
     instance->renderer->render();
 }
 
+void Parcheesi::enqueueAnimation()
+{
+    instance->animations++;
+}
+
+void Parcheesi::dequeueAnimation()
+{
+    instance->animations--;
+    if (instance->animations < 0) {
+        instance->animations = 0;
+    }
+}
+
+bool Parcheesi::canRollTheDice() {
+    return !animations;
+}
+
 void Parcheesi::timer() {
-    instance->turn();
+    if (instance->canRollTheDice()) {
+        instance->turn();
+    }
     
     instance->window->redisplay();
     

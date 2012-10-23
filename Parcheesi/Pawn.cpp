@@ -20,6 +20,7 @@ int Pawn::getPosition() {
 
 void Pawn::setPosition(int position) {
     this->position = position;
+    Parcheesi::getInstance()->enqueueAnimation();
 }
 
 int Pawn::getStartPosition() {
@@ -32,4 +33,17 @@ void Pawn::setStartPosition(int position) {
 
 Color Pawn::getColor() {
     return this->color;
+}
+
+void Pawn::setCoordinates(float x, float y) {
+    this->coordinates[0] = x;
+    this->coordinates[1] = y;
+}
+
+float Pawn::getXCoordinate() {
+    return this->coordinates[0];
+}
+
+float Pawn::getYCoordinate() {
+    return this->coordinates[1];
 }

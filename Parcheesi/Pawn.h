@@ -15,11 +15,15 @@ class Pawn {
         Color getColor();
         void setPosition(int position);
         void setStartPosition(int position);
+        void setCoordinates(float x, float y);
+        float getXCoordinate();
+        float getYCoordinate();
     private:
         int position;
         int startPosition;
         Pawn* nextPawn;
         Color color;
+        float coordinates[2] = {0, 0};
 };
 
 #endif
