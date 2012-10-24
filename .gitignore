@@ -18,3 +18,5 @@
 Parcheesi.xcodeproj/xcuserdata/thiago.xcuserdatad/xcschemes/xcschememanagement.plist
 
 .DS_Store
+
+*.xcuserstate
