@@ -15,7 +15,7 @@ Board::Board(Player* player) {
     }
 }
 
-void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
+bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
     int currentPosition = pawn->getPosition();
     int newPosition = this->nextPawnPosition(diceRoll, currentPosition, player->getStartingPosition(), player->getEndingPosition());
     int currentIndex = currentPosition - 1;
@@ -30,20 +30,24 @@ void Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
         if (currentPosition != 0)
             this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
     
-        if (checkCapture(newPosition)) {
+        if (checkCapture(newPosition, player)) {
             
-            this->movePawn(20, player, pawn);
+            //this->movePawn(20, player, pawn);
             
             PawnNode* captured = this->board[newIndex].pawnList->getFirst();
             
             captured->getPawn()->setPosition(Board::Nest);
             
             this->board[newIndex].pawnList->remove(this->board[newIndex].pawnList->getFirst());
+            
+            return true;
         }
     }
+    
+    return false;
 }
 
-bool Board::checkCapture(int position) {
+bool Board::checkCapture(int position, Player* currentPlayer) {
     // In special spaces, we can have more than one pawn in a space.
     for (int i = 0; i < 12; i++) {
         if (position == specialSpaces[i])
@@ -52,8 +56,16 @@ bool Board::checkCapture(int position) {
     
     int index = position - 1;
     
-    if (this->board[index].pawnList->getFirst())
-        return this->board[index].pawnList->getFirst()->getNext() != 0;
+    if (this->board[index].pawnList->getFirst()) {
+        PawnNode* node = this->board[index].pawnList->getFirst()->getNext();
+        
+        if (node == 0 || node->getPawn()->getPlayer() == currentPlayer) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -87,4 +99,14 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
         
         return position < Board::End ? Board::End : position;
     }
+}
+
+bool Board::canAddNewPawn(int startingPosition) {
+    PawnNode* node = this->board[startingPosition - 1].pawnList->getFirst();
+    
+    if (node != 0) {
+        return this->board[startingPosition - 1].pawnList->getFirst()->getNext() == 0;
+    }
+    
+    return true;
 }

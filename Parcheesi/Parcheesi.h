@@ -6,6 +6,7 @@
 #include "GlutWindow.h"
 #include "GlRenderer.h"
 #include "Color.h"
+#include "TurnResult.h"
 
 #include "iostream"
 #include <time.h>
@@ -22,9 +23,11 @@ class Parcheesi {
     
         Board* board;
         Player* firstPlayer;
+        Player* lastPlayer;
         Player* currentPlayer;
         GlutWindow* window;
         GlRenderer* renderer;
+        TurnResult* lastTurn;
     
         static Parcheesi* instance;
     

@@ -3,7 +3,13 @@
 Parcheesi* Parcheesi::instance = new Parcheesi();
 
 void Parcheesi::turn() {
-    int diceRoll = this->diceRoll();
+    int diceRoll;
+    
+    if (lastTurn->IsPawnCapture()) {
+        diceRoll = 20;
+    } else {
+        diceRoll = this->diceRoll();
+    }
     
     PawnList* pawnList = this->getPlayablePawns(diceRoll);
     
@@ -13,16 +19,21 @@ void Parcheesi::turn() {
     
     // For now, always selects the first pawn in the PawnList.
     
+    bool capture = false;
+    
     if (pawnList->getFirst() != 0) {
 
         Pawn* pawnToPlay = pawnList->getFirst()->getPawn();
     
-        board->movePawn(diceRoll, this->currentPlayer, pawnToPlay);
+        capture = board->movePawn(diceRoll, this->currentPlayer, pawnToPlay);
         
-        std::cout << pawnToPlay->getPosition() << "\n";
+        std::cout << "Dice roll: " << diceRoll << " New position: " << pawnToPlay->getPosition() << "\n";
     }
     
-    this->currentPlayer = this->currentPlayer->getNextPlayer();
+    if (!capture)
+        this->currentPlayer = this->currentPlayer->getNextPlayer();
+    
+    lastTurn = new TurnResult(capture, false);
 }
 
 Parcheesi* Parcheesi::getInstance() {
@@ -32,11 +43,11 @@ Parcheesi* Parcheesi::getInstance() {
 PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
     PawnList* pawnList = new PawnList();
     Pawn* pawn;
-    int canAddNewPawn = 5;
+    int canAddNewPawnRoll = 5;
     
     // Find a pawn in nest and add to the pawn list.
     
-    if (diceRoll == canAddNewPawn) {
+    if (diceRoll == canAddNewPawnRoll && this->board->canAddNewPawn(this->currentPlayer->getStartingPosition())) {
         
         pawn = this->currentPlayer->getFirstPawn();
         
@@ -49,6 +60,9 @@ PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
             pawn = pawn->getNextPawn();
         }
     }
+    
+    if (pawnList->getFirst() != 0)
+        return pawnList;
     
     // Find all pawns in positions not in nest or end and add to pawn list.
     
@@ -87,11 +101,13 @@ bool Parcheesi::canRollTheDice() {
 }
 
 void Parcheesi::timer() {
-    if (instance->currentPlayer->hasCaptured()) {
-//        instance->currentPlayer->useCapture(<#Pawn *pawn#>)
-    } else if (instance->canRollTheDice()) {
+//    if (instance->currentPlayer->hasCaptured()) {
+////        instance->currentPlayer->useCapture(<#Pawn *pawn#>)
+//    } else if (instance->canRollTheDice()) {
+//
+//    }
+    if (!instance->animations)
         instance->turn();
-    }
     
     instance->window->redisplay();
     
@@ -114,7 +130,8 @@ int Parcheesi::diceRoll() {
 //    }
     
 //    return previousRoll;
-    return rand()%6+1;
+//    return rand()%6+1;
+    return 5;
 }
 
 void Parcheesi::start() {
@@ -164,4 +181,6 @@ Parcheesi::Parcheesi() {
 
     this->firstPlayer = firstPlayer;
     this->currentPlayer = this->firstPlayer;
+    this->lastPlayer = this->firstPlayer;
+    this->lastTurn = new TurnResult(false, false);
 }

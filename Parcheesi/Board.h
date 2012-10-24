@@ -20,8 +20,9 @@ class Board {
         static const int End = -8;
         static const int Nest = 0;
         Board(Player* player);
-        void movePawn(int diceRoll, Player* player, Pawn* pawn);
-        bool checkCapture(int position);
+        bool movePawn(int diceRoll, Player* player, Pawn* pawn);
+        bool checkCapture(int position, Player* currentPlayer);
+        bool canAddNewPawn(int startingPosition);
         int nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition);
 };
 
