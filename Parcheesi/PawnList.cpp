@@ -9,8 +9,7 @@ void PawnList::add(PawnNode* pawnNode) {
     if (this->first == 0) {
         this->first = pawnNode;
     } else {
-        PawnNode* previous = this->first;
-        PawnNode* current = previous;
+        PawnNode* current = this->first;
         while(current->getNext() != 0) {
             current = current->getNext();
         }

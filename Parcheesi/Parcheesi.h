@@ -34,7 +34,9 @@ class Parcheesi {
         int previousRoll = 2;
         int animations = 0;
     
-        bool canRollTheDice();
+        static const int NewPawnDiceRoll = 5;
+    
+        bool isAnimating();
         void turn();
         bool isGameOver();
         void gameOver();

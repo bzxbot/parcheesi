@@ -43,11 +43,11 @@ Parcheesi* Parcheesi::getInstance() {
 PawnList* Parcheesi::getPlayablePawns(int diceRoll) {
     PawnList* pawnList = new PawnList();
     Pawn* pawn;
-    int canAddNewPawnRoll = 5;
     
     // Find a pawn in nest and add to the pawn list.
     
-    if (diceRoll == canAddNewPawnRoll && this->board->canAddNewPawn(this->currentPlayer->getStartingPosition())) {
+    if (diceRoll == Parcheesi::NewPawnDiceRoll &&
+        this->board->canAddNewPawn(this->currentPlayer->getStartingPosition())) {
         
         pawn = this->currentPlayer->getFirstPawn();
         
@@ -91,22 +91,18 @@ void Parcheesi::enqueueAnimation()
 void Parcheesi::dequeueAnimation()
 {
     this->animations--;
+    
     if (this->animations < 0) {
         this->animations = 0;
     }
 }
 
-bool Parcheesi::canRollTheDice() {
-    return !animations;
+bool Parcheesi::isAnimating() {
+    return animations != 0;
 }
 
 void Parcheesi::timer() {
-//    if (instance->currentPlayer->hasCaptured()) {
-////        instance->currentPlayer->useCapture(<#Pawn *pawn#>)
-//    } else if (instance->canRollTheDice()) {
-//
-//    }
-    if (!instance->animations)
+    if (!instance->isAnimating())
         instance->turn();
     
     instance->window->redisplay();
@@ -130,8 +126,8 @@ int Parcheesi::diceRoll() {
 //    }
     
 //    return previousRoll;
-//    return rand()%6+1;
-    return 5;
+    return rand()%6+1;
+//    return 5;
 }
 
 void Parcheesi::start() {
