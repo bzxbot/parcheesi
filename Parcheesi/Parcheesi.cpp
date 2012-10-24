@@ -156,7 +156,7 @@ void Parcheesi::timer() {
     
     switch (instance->state) {
         case State::PrepareTurn:
-            instance->input = false;
+            instance->pawnType = PawnType::None;
             instance->playablePawns = instance->prepareTurn();
             if (instance->currentPlayer->getPlayerType() == Player::Type::Human)
                 instance->state = State::PlayerInput;
@@ -165,11 +165,9 @@ void Parcheesi::timer() {
             break;
         case State::PlayerInput:
             // Show available inputs in screen.
-            if (instance->isInputAvailable()) {
-                if (instance->input) {
-                    instance->selectedPawn = instance->selectPawn(instance->playablePawns);
-                    instance->state = State::Turn;
-                }
+            if (instance->isInputReady()) {
+                instance->selectedPawn = instance->selectPawn(instance->playablePawns);
+                instance->state = State::Turn;
             }
             break;
         case State::RobotInput:
@@ -190,12 +188,12 @@ bool Parcheesi::isGameOver() {
     return false;
 }
 
-bool Parcheesi::isInputAvailable() {
-    return this->input;
+bool Parcheesi::isInputReady() {
+    return this->pawnType != PawnType::None;
 }
 
-void Parcheesi::setInput(bool input) {
-    instance->input = input;
+void Parcheesi::setSelectedPawn(PawnType type) {
+    instance->pawnType = type;
 }
 
 void Parcheesi::gameOver() {
@@ -219,9 +217,23 @@ void Parcheesi::start() {
 
 Parcheesi::Parcheesi() {
     srand((unsigned int)time(NULL));
+
     
-    window = new GlutWindow(&Parcheesi::display, &Parcheesi::timer);
+    PawnSelector* selectorPlus = new PawnSelector(20, 20, PawnType::Plus);
+    PawnSelector* selectorMinus = new PawnSelector(30, 30, PawnType::Minus);
+    PawnSelector* selectorPipe = new PawnSelector(40, 40, PawnType::Pipe);
+    PawnSelector* selectorBlank = new PawnSelector(40, 40, PawnType::Blank);
+    
+    selectorPlus->setNext(selectorMinus);
+    selectorMinus->setNext(selectorPipe);
+    selectorPipe->setNext(selectorBlank);
+    selectorBlank->setNext(0);
+    
+    this->mouseInput = new GlutMouseInput(selectorPlus, &Parcheesi::setSelectedPawn);
+    
+    window = new GlutWindow(this->mouseInput, &Parcheesi::display, &Parcheesi::timer);
     renderer = new GlRenderer();
+
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));

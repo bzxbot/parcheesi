@@ -2,6 +2,7 @@
 #define Window_Header
 
 #include "Parcheesi.h"
+#include "GlutMouseInput.h"
 
 #include "iostream"
 
@@ -15,8 +16,9 @@ class GlutWindow {
         static void (*timerFunction)();
         static void (*displayFunction)();
         static void clear();
+        static GlutMouseInput* mouseInput;
     public:
-        GlutWindow(void (*displayFunction)(), void (*timerFunction)());
+        GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), void (*timerFunction)());
         void show();
         void redisplay();
 };

@@ -3,11 +3,14 @@
 void (*GlutWindow::timerFunction)();
 void (*GlutWindow::displayFunction)();
 
-GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
+GlutMouseInput* GlutWindow::mouseInput;
+
+GlutWindow::GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), void (*timerFunction)()) {
     int argc = 0;
     
     GlutWindow::timerFunction = timerFunction;
     GlutWindow::displayFunction = displayFunction;
+    GlutWindow::mouseInput = mouseInput;
     
     glutInit(&argc, 0);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -25,7 +28,7 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
 void GlutWindow::mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
         std::cout << "Pressed: " << x << ", " << 600-y << "\n";
-        Parcheesi::setInput(true);
+        mouseInput->setInput(x, y);
     }
 }
 

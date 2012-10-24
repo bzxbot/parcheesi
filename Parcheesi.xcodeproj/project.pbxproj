@@ -19,6 +19,8 @@
 		D180BF0E162CECDF00AF873D /* Parcheesi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0C162CECDF00AF873D /* Parcheesi.cpp */; };
 		D180BF11162CECEC00AF873D /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D180BF0F162CECEC00AF873D /* Board.cpp */; };
 		D18E1B4F16385A3F00718FAA /* TurnResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D18E1B4D16385A3F00718FAA /* TurnResult.cpp */; };
+		D18E1B531638823500718FAA /* PawnSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D18E1B511638823500718FAA /* PawnSelector.cpp */; };
+		D18E1B561638839100718FAA /* GlutMouseInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D18E1B541638839000718FAA /* GlutMouseInput.cpp */; };
 		D192AD7D162E2EB50038FAE1 /* AnimationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D192AD7B162E2EB50038FAE1 /* AnimationQueue.cpp */; };
 		D192AD81162E2ECC0038FAE1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D192AD7F162E2ECC0038FAE1 /* Animation.cpp */; };
 		D1CD59D01631D1B1005979C8 /* GlutWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CD59CE1631D1B1005979C8 /* GlutWindow.cpp */; };
@@ -67,6 +69,11 @@
 		D180BF10162CECEC00AF873D /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		D18E1B4D16385A3F00718FAA /* TurnResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TurnResult.cpp; sourceTree = "<group>"; };
 		D18E1B4E16385A3F00718FAA /* TurnResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnResult.h; sourceTree = "<group>"; };
+		D18E1B511638823500718FAA /* PawnSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PawnSelector.cpp; sourceTree = "<group>"; };
+		D18E1B521638823500718FAA /* PawnSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnSelector.h; sourceTree = "<group>"; };
+		D18E1B541638839000718FAA /* GlutMouseInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlutMouseInput.cpp; sourceTree = "<group>"; };
+		D18E1B551638839000718FAA /* GlutMouseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlutMouseInput.h; sourceTree = "<group>"; };
+		D18E1B58163884F000718FAA /* PawnType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PawnType.h; sourceTree = "<group>"; };
 		D192AD7B162E2EB50038FAE1 /* AnimationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationQueue.cpp; sourceTree = "<group>"; };
 		D192AD7C162E2EB50038FAE1 /* AnimationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationQueue.h; sourceTree = "<group>"; };
 		D192AD7F162E2ECC0038FAE1 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
@@ -133,6 +140,9 @@
 				D177E5591633975B00CD1FDB /* IObjectRenderer.h */,
 				D177E55C1634D5A100CD1FDB /* Canvas.h */,
 				D18E1B4E16385A3F00718FAA /* TurnResult.h */,
+				D18E1B521638823500718FAA /* PawnSelector.h */,
+				D18E1B58163884F000718FAA /* PawnType.h */,
+				D18E1B551638839000718FAA /* GlutMouseInput.h */,
 				D12DD3EF162CF57E00470DCD /* Main.cpp */,
 				D180BF0C162CECDF00AF873D /* Parcheesi.cpp */,
 				D180BF0F162CECEC00AF873D /* Board.cpp */,
@@ -149,6 +159,8 @@
 				D124964616334CB100C38933 /* GlPawnRenderer.cpp */,
 				D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */,
 				D18E1B4D16385A3F00718FAA /* TurnResult.cpp */,
+				D18E1B511638823500718FAA /* PawnSelector.cpp */,
+				D18E1B541638839000718FAA /* GlutMouseInput.cpp */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -220,6 +232,8 @@
 				D124964816334CB100C38933 /* GlPawnRenderer.cpp in Sources */,
 				D177E55A1633975C00CD1FDB /* IObjectRenderer.cpp in Sources */,
 				D18E1B4F16385A3F00718FAA /* TurnResult.cpp in Sources */,
+				D18E1B531638823500718FAA /* PawnSelector.cpp in Sources */,
+				D18E1B561638839100718FAA /* GlutMouseInput.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

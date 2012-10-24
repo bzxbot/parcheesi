@@ -7,6 +7,8 @@
 #include "GlRenderer.h"
 #include "Color.h"
 #include "TurnResult.h"
+#include "GlutMouseInput.h"
+#include "PawnSelector.h"
 
 #include "iostream"
 #include <time.h>
@@ -28,16 +30,18 @@ class Parcheesi {
         Player* currentPlayer;
         GlutWindow* window;
         GlRenderer* renderer;
+        GlutMouseInput* mouseInput;
         TurnResult* lastTurn;
         PawnList* playablePawns;
         Pawn* selectedPawn;
+        PawnSelector* pawnSelector;
     
         static Parcheesi* instance;
     
         int previousRoll = 1;
         int diceRoll;
         int animations = 0;
-        bool input;
+        PawnType pawnType;
     
         static const int NewPawnDiceRoll = 5;
     
@@ -59,15 +63,15 @@ class Parcheesi {
         int rollDice();
         int nextPawnPosition(int currentPosition, int diceRoll, int endingPosition);
         PawnList* getPlayablePawns(int diceRoll);
-        bool isInputAvailable();
+        bool isInputReady();
         static void display();
         static void timer();
+        static void setSelectedPawn(PawnType type);
     public:
         void start();
         static Parcheesi* getInstance();
         void enqueueAnimation();
         void dequeueAnimation();
-        static void setInput(bool input);
 };
 
 
