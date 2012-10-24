@@ -9,6 +9,7 @@
 #include "TurnResult.h"
 #include "GlutMouseInput.h"
 #include "PawnSelector.h"
+#include "GlPawnSelectorRenderer.h"
 
 #include "iostream"
 #include <time.h>
@@ -62,6 +63,7 @@ class Parcheesi {
         void gameOver();
         int rollDice();
         int nextPawnPosition(int currentPosition, int diceRoll, int endingPosition);
+        void updatePawnSelectors(PawnList* pawnList);
         PawnList* getPlayablePawns(int diceRoll);
         bool isInputReady();
         static void display();

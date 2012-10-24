@@ -3,7 +3,9 @@
 PawnSelector::PawnSelector(int x, int y, PawnType type) {
     this->x = x;
     this->y = y;
+    this->radius = 50;
     this->type = type;
+    this->active = false;
 }
 
 void PawnSelector::setNext(PawnSelector* next) {
@@ -15,17 +17,29 @@ PawnSelector* PawnSelector::getNext() {
 }
 
 int PawnSelector::getX() {
-    this->x;
+    return this->x;
 }
 
 int PawnSelector::getY() {
-    this->y;
+   return this->y;
 }
 
 int PawnSelector::getRadius() {
-    this->radius;
+    return this->radius;
 }
 
 PawnType PawnSelector::getType() {
-    this->type;
+    return this->type;
+}
+
+bool PawnSelector::isActive() {
+    return this->active;
+}
+
+void PawnSelector::activate() {
+    this->active = true;
+}
+
+void PawnSelector::deactivate() {
+    this->active = false;
 }

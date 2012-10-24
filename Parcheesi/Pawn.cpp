@@ -1,10 +1,11 @@
 #include "Pawn.h"
 
-Pawn::Pawn(int position, int startPosition, Color color, Player* player) {
+Pawn::Pawn(int position, int startPosition, Color color, Player* player, PawnType type) {
     this->startPosition = startPosition;
     this->position = position;
     this->color = color;
     this->player = player;
+    this->type = type;
 }
 
 void Pawn::setNextPawn(Pawn* nextPawn) {
@@ -51,4 +52,8 @@ float Pawn::getYCoordinate() {
 
 Player* Pawn::getPlayer() {
     return this->player;
+}
+
+PawnType Pawn::getType() {
+    return this->type;
 }

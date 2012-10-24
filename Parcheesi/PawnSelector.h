@@ -12,8 +12,12 @@ class PawnSelector {
         int getY();
         int getRadius();
         PawnType getType();
+        void activate();
+        void deactivate();
+        bool isActive();
     private:
         int x, y, radius;
+        bool active;
         PawnSelector* next;
         PawnType type;
 };

@@ -25,7 +25,7 @@ bool GlutMouseInput::setInput(int x, int y) {
         pawnSelector = pawnSelector->getNext();
     }
     
-    inputCallbackFunction(PawnType::Blank);
+    //inputCallbackFunction(PawnType::Blank);
     
     return false;
 }

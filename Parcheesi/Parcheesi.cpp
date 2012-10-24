@@ -22,52 +22,20 @@ Pawn* Parcheesi::selectPawn(PawnList* pawnList) {
     return pawnList->getFirst()->getPawn();
 }
 
-//void Parcheesi::turn() {
-//    int diceRoll;
-//    
-//    if (lastTurn->IsPawnCapture()) {
-//        diceRoll = 20;
-//    } else {
-//        diceRoll = this->rollDice();
-//    }
-//    
-//    PawnList* pawnList = this->getPlayablePawns(diceRoll);
-//    
-//    // Highlight possible play pawns.
-//    
-//    // User selects pawn.
-//    
-//    // For now, always selects the first pawn in the PawnList.
-//    
-//    bool capture = false;
-//    
-//    if (pawnList->getFirst() != 0) {
-//
-//        Pawn* pawnToPlay = pawnList->getFirst()->getPawn();
-//    
-//        capture = board->movePawn(diceRoll, this->currentPlayer, pawnToPlay);
-//        
-//        std::cout << "Player: " << this->currentPlayer->getColor() << " Dice roll: " << diceRoll << " New position: " << pawnToPlay->getPosition() << "\n";
-//    }
-//    
-//    if (!capture)
-//        this->currentPlayer = this->currentPlayer->getNextPlayer();
-//    
-//    lastTurn = new TurnResult(capture, false);
-//}
-
 void Parcheesi::turn(Pawn* pawn) {
-        
-    bool capture = board->movePawn(diceRoll, this->currentPlayer, pawn);
-        
-    std::cout << "Player: " << this->currentPlayer->getColor() << " Dice roll: " << diceRoll << " New position: " << pawn->getPosition() << "\n";
+    
+    bool capture = false;
 
+    if (pawn != 0) {
+        capture = board->movePawn(diceRoll, this->currentPlayer, pawn);
+        
+        std::cout << "Player: " << this->currentPlayer->getColor() << " Dice roll: " << diceRoll << " New position: " << pawn->getPosition() << "\n";
+    }
     
     if (!capture)
         this->currentPlayer = this->currentPlayer->getNextPlayer();
     
     lastTurn = new TurnResult(capture, false);
-
 }
 
 Parcheesi* Parcheesi::getInstance() {
@@ -135,18 +103,6 @@ bool Parcheesi::isAnimating() {
     return animations != 0;
 }
 
-//void Parcheesi::timer() {
-//    instance->prepareTurn();
-//    
-//    if (!instance->isAnimating())
-//        instance->turn();
-//    
-//    instance->window->redisplay();
-//    
-//    if (instance->isGameOver())
-//        instance->gameOver();
-//}
-
 void Parcheesi::timer() {
     instance->window->redisplay();
     
@@ -157,6 +113,7 @@ void Parcheesi::timer() {
     switch (instance->state) {
         case State::PrepareTurn:
             instance->pawnType = PawnType::None;
+            instance->selectedPawn = 0;
             instance->playablePawns = instance->prepareTurn();
             if (instance->currentPlayer->getPlayerType() == Player::Type::Human)
                 instance->state = State::PlayerInput;
@@ -164,7 +121,8 @@ void Parcheesi::timer() {
                 instance->state = State::RobotInput;
             break;
         case State::PlayerInput:
-            // Show available inputs in screen.
+            // TODO: Update the pawn selectors to the available pawns in PawnList.
+            instance->updatePawnSelectors(instance->playablePawns);
             if (instance->isInputReady()) {
                 instance->selectedPawn = instance->selectPawn(instance->playablePawns);
                 instance->state = State::Turn;
@@ -184,6 +142,35 @@ void Parcheesi::timer() {
         instance->gameOver();
 }
 
+void Parcheesi::updatePawnSelectors(PawnList* pawnList) {
+    PawnSelector* pawnSelector = this->pawnSelector;
+    
+    while(pawnSelector != 0) {
+        pawnSelector->deactivate();
+        
+        pawnSelector = pawnSelector->getNext();
+    }
+    
+    PawnNode* pawnNode = pawnList->getFirst();
+    
+    while(pawnNode != 0) {
+        
+        Pawn* pawn = pawnNode->getPawn();
+        
+        pawnSelector = this->pawnSelector;
+
+        while(pawnSelector != 0) {
+            if (pawnSelector->getType() == pawn->getType()){
+                pawnSelector->activate();
+            }
+            
+            pawnSelector = pawnSelector->getNext();
+        }
+        
+        pawnNode = pawnNode->getNext();
+    }
+}
+
 bool Parcheesi::isGameOver() {
     return false;
 }
@@ -200,14 +187,14 @@ void Parcheesi::gameOver() {
 }
 
 int Parcheesi::rollDice() {
-    if (previousRoll == 1) {
-        previousRoll = 3;
-    } else {
-        previousRoll = 1;
-    }
+//    if (previousRoll == 1) {
+//        previousRoll = 3;
+//    } else {
+//        previousRoll = 1;
+//    }
     
-    return previousRoll;
-//    return rand()%6+1;
+//    return previousRoll;
+    return rand()%6+1;
 //    return 5;
 }
 
@@ -218,11 +205,12 @@ void Parcheesi::start() {
 Parcheesi::Parcheesi() {
     srand((unsigned int)time(NULL));
 
+    renderer = new GlRenderer();
     
-    PawnSelector* selectorPlus = new PawnSelector(20, 20, PawnType::Plus);
-    PawnSelector* selectorMinus = new PawnSelector(30, 30, PawnType::Minus);
-    PawnSelector* selectorPipe = new PawnSelector(40, 40, PawnType::Pipe);
-    PawnSelector* selectorBlank = new PawnSelector(40, 40, PawnType::Blank);
+    PawnSelector* selectorPlus = new PawnSelector(10, 230, PawnType::Plus);
+    PawnSelector* selectorMinus = new PawnSelector(80, 230, PawnType::Minus);
+    PawnSelector* selectorPipe = new PawnSelector(300, 300, PawnType::Pipe);
+    PawnSelector* selectorBlank = new PawnSelector(10, 300, PawnType::Blank);
     
     selectorPlus->setNext(selectorMinus);
     selectorMinus->setNext(selectorPipe);
@@ -232,8 +220,11 @@ Parcheesi::Parcheesi() {
     this->mouseInput = new GlutMouseInput(selectorPlus, &Parcheesi::setSelectedPawn);
     
     window = new GlutWindow(this->mouseInput, &Parcheesi::display, &Parcheesi::timer);
-    renderer = new GlRenderer();
 
+    renderer->registerRender(new GlPawnSelectorRenderer(selectorPlus));
+    renderer->registerRender(new GlPawnSelectorRenderer(selectorMinus));
+    renderer->registerRender(new GlPawnSelectorRenderer(selectorPipe));
+    renderer->registerRender(new GlPawnSelectorRenderer(selectorBlank));
     
     // TODO: Randomize the players.
     //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
@@ -274,4 +265,5 @@ Parcheesi::Parcheesi() {
     this->currentPlayer = this->firstPlayer;
     this->lastPlayer = this->firstPlayer;
     this->lastTurn = new TurnResult(false, false);
+    this->pawnSelector = selectorPlus;
 }
