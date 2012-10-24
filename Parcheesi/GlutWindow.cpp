@@ -1,5 +1,4 @@
 #include "GlutWindow.h"
-#include <glut/glut.h>
 
 void (*GlutWindow::timerFunction)();
 void (*GlutWindow::displayFunction)();
@@ -24,8 +23,9 @@ GlutWindow::GlutWindow(void (*displayFunction)(), void (*timerFunction)()) {
 }
 
 void GlutWindow::mouse(int button, int state, int x, int y) {
-    if (state == GLUT_DOWN) {
+    if (button == GLUT_LEFT_BUTTON) {
         std::cout << "Pressed: " << x << ", " << 600-y << "\n";
+        Parcheesi::setInput(true);
     }
 }
 

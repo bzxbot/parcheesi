@@ -1,7 +1,11 @@
 #ifndef Window_Header
 #define Window_Header
 
+#include "Parcheesi.h"
+
 #include "iostream"
+
+#include <glut/glut.h>
 
 class GlutWindow {
     private:

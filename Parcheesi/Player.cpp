@@ -15,6 +15,7 @@ Player::Player(Type type, Color color, int startingPosition, int endingPosition)
     this->type = type;
     this->startingPosition = startingPosition;
     this->endingPosition = endingPosition;
+    this->color = color;
 }
 
 Player* Player::getNextPlayer() {
@@ -35,6 +36,10 @@ int Player::getStartingPosition() {
 
 int Player::getEndingPosition() {
     return this->endingPosition;
+}
+
+Color Player::getColor() {
+    return this->color;
 }
 
 void Player::capture() {

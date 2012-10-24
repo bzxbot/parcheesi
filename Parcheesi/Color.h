@@ -10,10 +10,10 @@
 #define Parcheesi_Color_h
 
 enum Color {
-    Blue,
-    Red,
-    Green,
-    Yellow
+    Blue = 1,
+    Red = 2,
+    Green = 3,
+    Yellow = 4
 };
 
 #endif

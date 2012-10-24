@@ -132,6 +132,7 @@
 				D124964716334CB100C38933 /* GlPawnRenderer.h */,
 				D177E5591633975B00CD1FDB /* IObjectRenderer.h */,
 				D177E55C1634D5A100CD1FDB /* Canvas.h */,
+				D18E1B4E16385A3F00718FAA /* TurnResult.h */,
 				D12DD3EF162CF57E00470DCD /* Main.cpp */,
 				D180BF0C162CECDF00AF873D /* Parcheesi.cpp */,
 				D180BF0F162CECEC00AF873D /* Board.cpp */,
@@ -148,7 +149,6 @@
 				D124964616334CB100C38933 /* GlPawnRenderer.cpp */,
 				D177E5581633975B00CD1FDB /* IObjectRenderer.cpp */,
 				D18E1B4D16385A3F00718FAA /* TurnResult.cpp */,
-				D18E1B4E16385A3F00718FAA /* TurnResult.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";

@@ -19,6 +19,7 @@ class Player {
         int getStartingPosition();
         int getEndingPosition();
         Type getPlayerType();
+        Color getColor();
         void capture();
         void useCapture(Pawn* pawn);
         bool hasCaptured();
@@ -26,6 +27,7 @@ class Player {
         Player* nextPlayer;
         Pawn* firstPawn;
         Type type;
+        Color color;
         int startingPosition;
         int endingPosition;
         bool captured;
