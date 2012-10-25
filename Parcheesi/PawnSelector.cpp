@@ -37,7 +37,7 @@ PawnType PawnSelector::getType() {
 }
 
 bool PawnSelector::isActive() {
-	PawnList *pawnList = Parcheesi::getInstance()->getPlayablePawns(0);
+	PawnList *pawnList = Parcheesi::getInstance()->getPlayablePawns(Parcheesi::getInstance()->lastDiceRoll());
 	PawnNode *pawnNode = pawnList->getFirst();
 	
 	if (!Parcheesi::getInstance()->isCurrentPlayerHuman())

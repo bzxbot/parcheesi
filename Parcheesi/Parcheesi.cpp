@@ -115,15 +115,17 @@ void Parcheesi::timer() {
             instance->pawnType = PawnType::None;
             instance->selectedPawn = 0;
             instance->playablePawns = instance->prepareTurn();
-            if (instance->currentPlayer->getPlayerType() == Player::Type::Human)
+            if (instance->currentPlayer->getPlayerType() == Player::Type::Human) {
+				instance->selectedPawn = NULL;
                 instance->state = State::PlayerInput;
+			}
             else
                 instance->state = State::RobotInput;
             break;
         case State::PlayerInput:
             instance->updatePawnSelectors(instance->playablePawns);
-            if (instance->isInputReady()) {
-                instance->selectedPawn = instance->selectPawn(instance->playablePawns);
+            if (instance->isInputReady() && instance->selectedPawn != NULL) {
+                //instance->selectedPawn = instance->selectPawn(instance->playablePawns);
                 instance->state = State::Turn;
             }
             break;
@@ -180,6 +182,17 @@ bool Parcheesi::isInputReady() {
 
 void Parcheesi::setSelectedPawn(PawnType type) {
     instance->pawnType = type;
+	
+	PawnNode *pawnNode = Parcheesi::getInstance()->getPlayablePawns(instance->diceRoll)->getFirst();
+	
+	while (pawnNode != 0) {
+		if (pawnNode->getPawn()->getType() == type)
+		{
+			Parcheesi::getInstance()->selectedPawn = pawnNode->getPawn();
+			return;
+		}
+		pawnNode = pawnNode->getNext();
+	}
 }
 
 void Parcheesi::gameOver() {
@@ -194,7 +207,7 @@ int Parcheesi::rollDice() {
 //    
 //    return previousRoll;
 	this->nTurns++;
-    return rand()%6+1;
+    return diceRoll = rand()%6+1;
 //    return 5;
 }
 
@@ -204,6 +217,10 @@ int Parcheesi::getNumberOfTurns() {
 
 Color Parcheesi::getColorOfCurrentPlayer() {
 	return this->currentPlayer->getColor();
+}
+
+int Parcheesi::lastDiceRoll() {
+	return diceRoll;
 }
 
 bool Parcheesi::isCurrentPlayerHuman() {

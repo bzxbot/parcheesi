@@ -75,6 +75,7 @@ class Parcheesi {
         void enqueueAnimation();
         void dequeueAnimation();
 		int getNumberOfTurns();
+		int lastDiceRoll();
 		bool isCurrentPlayerHuman();
 		Color getColorOfCurrentPlayer();
 		PawnList* getPlayablePawns(int diceRoll);
