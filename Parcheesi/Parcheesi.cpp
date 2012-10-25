@@ -186,14 +186,14 @@ void Parcheesi::gameOver() {
 }
 
 int Parcheesi::rollDice() {
-    if (previousRoll == 1) {
-        previousRoll = 3;
-    } else {
-        previousRoll = 1;
-    }
-    
-    return previousRoll;
-//    return rand()%6+1;
+//    if (previousRoll == 1) {
+//        previousRoll = 3;
+//    } else {
+//        previousRoll = 1;
+//    }
+//    
+//    return previousRoll;
+    return rand()%6+1;
 //    return 5;
 }
 

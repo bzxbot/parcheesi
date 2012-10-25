@@ -49,10 +49,10 @@ bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
 
 bool Board::checkCapture(int position, Pawn* pawn, Player* currentPlayer) {
     // In special spaces, we can have more than one pawn in a space.
-//    for (int i = 0; i < 12; i++) {
-//        if (position == specialSpaces[i])
-//            return false;
-//    }
+    for (int i = 0; i < 12; i++) {
+        if (position == specialSpaces[i])
+            return false;
+    }
     
     int index = position - 1;
     
