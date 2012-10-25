@@ -1,4 +1,6 @@
 #include "GlPawnSelectorRenderer.h"
+#include "Parcheesi.h"
+#include "Color.h"
 
 GLuint pawnPlus, pawnMinus, pawnL, pawnOnly;
 
@@ -98,24 +100,35 @@ void GlPawnSelectorRenderer::render() {
     if(!pawnSelector->isActive())
         return;
 
+	switch (Parcheesi::getInstance()->getColorOfCurrentPlayer()) {
+		case Color::Blue:
+			glColor3f(0.0, 0.0, 1.0);
+			break;
+		case Color::Green:
+			glColor3f(0.0, 1.0, 0.0);
+			break;
+		case Color::Yellow:
+			glColor3f(1.0, 1.0, 0.0);
+			break;
+		default:
+			glColor3f(1.0, 0.0, 0.0);
+			break;
+	}
+	
     switch (pawnSelector->getType()) {
         case PawnType::Blank:
-            glColor3f(1,0,0);
             glViewport(10, 300, 50, 50);
             glCallList(pawnOnly);
             break;
         case PawnType::Pipe:
-            glColor3f(1,0,0);
             glViewport(80, 300, 50, 50);
             glCallList(pawnL);
             break;
         case PawnType::Minus:
-            glColor3f(1,0,0);
             glViewport(80, 230, 50, 50);
             glCallList(pawnMinus);
             break;
         case PawnType::Plus:
-            glColor3f(1,0,0);
             glViewport(10, 230, 50, 50);
             glCallList(pawnPlus);
             break;

@@ -170,7 +170,6 @@ void GlPawnRenderer::calculatePawnPosition() {
         
         if (this->pawn->getPosition() == this->pawn->getPlayer()->getStartingPosition() && !Parcheesi::getInstance()->getNumberOfTurns()) {
             this->pawn->setCoordinates(goal[0], goal[1]);
-            //Parcheesi::getInstance()->dequeueAnimation();
             return;
         }
     } else {

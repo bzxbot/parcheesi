@@ -76,6 +76,7 @@ class Parcheesi {
         void enqueueAnimation();
         void dequeueAnimation();
 		int getNumberOfTurns();
+		Color getColorOfCurrentPlayer();
 };
 
 

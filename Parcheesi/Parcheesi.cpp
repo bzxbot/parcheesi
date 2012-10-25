@@ -202,6 +202,10 @@ int Parcheesi::getNumberOfTurns() {
 	return this->nTurns;
 }
 
+Color Parcheesi::getColorOfCurrentPlayer() {
+	return this->currentPlayer->getColor();
+}
+
 void Parcheesi::start() {
     window->show();
 }
