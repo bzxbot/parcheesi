@@ -121,7 +121,6 @@ void Parcheesi::timer() {
                 instance->state = State::RobotInput;
             break;
         case State::PlayerInput:
-            // TODO: Update the pawn selectors to the available pawns in PawnList.
             instance->updatePawnSelectors(instance->playablePawns);
             if (instance->isInputReady()) {
                 instance->selectedPawn = instance->selectPawn(instance->playablePawns);
@@ -187,14 +186,14 @@ void Parcheesi::gameOver() {
 }
 
 int Parcheesi::rollDice() {
-//    if (previousRoll == 1) {
-//        previousRoll = 3;
-//    } else {
-//        previousRoll = 1;
-//    }
+    if (previousRoll == 1) {
+        previousRoll = 3;
+    } else {
+        previousRoll = 1;
+    }
     
-//    return previousRoll;
-    return rand()%6+1;
+    return previousRoll;
+//    return rand()%6+1;
 //    return 5;
 }
 

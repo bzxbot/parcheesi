@@ -21,7 +21,7 @@ class Board {
         static const int Nest = 0;
         Board(Player* player);
         bool movePawn(int diceRoll, Player* player, Pawn* pawn);
-        bool checkCapture(int position, Player* currentPlayer);
+        bool checkCapture(int position, Pawn* pawn, Player* currentPlayer);
         bool canAddNewPawn(int startingPosition);
         int nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition);
 };

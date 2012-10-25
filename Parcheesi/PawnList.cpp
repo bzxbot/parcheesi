@@ -19,13 +19,13 @@ void PawnList::add(PawnNode* pawnNode) {
 
 void PawnList::remove(PawnNode* node) {
     
-    if (this->first == node) {
+    if (this->first->getPawn() == node->getPawn()) {
         this->first = this->first->getNext();
     } else {
         PawnNode* previous = this->first;
         PawnNode* current = this->first->getNext();
         while(current != 0) {
-            if (current == node) {
+            if (current->getPawn() == node->getPawn()) {
                 previous->setNext(current->getNext());
                 break;
             }

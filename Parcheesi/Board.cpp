@@ -30,7 +30,7 @@ bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
         if (currentPosition != 0)
             this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
     
-        if (checkCapture(newPosition, player)) {
+        if (checkCapture(newPosition, pawn, player)) {
             
             //this->movePawn(20, player, pawn);
             
@@ -47,18 +47,18 @@ bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
     return false;
 }
 
-bool Board::checkCapture(int position, Player* currentPlayer) {
+bool Board::checkCapture(int position, Pawn* pawn, Player* currentPlayer) {
     // In special spaces, we can have more than one pawn in a space.
-    for (int i = 0; i < 12; i++) {
-        if (position == specialSpaces[i])
-            return false;
-    }
+//    for (int i = 0; i < 12; i++) {
+//        if (position == specialSpaces[i])
+//            return false;
+//    }
     
     int index = position - 1;
     
     if (this->board[index].pawnList->getFirst()) {
-        PawnNode* node = this->board[index].pawnList->getFirst()->getNext();
-        
+        PawnNode* node = this->board[index].pawnList->getFirst();
+
         if (node == 0 || node->getPawn()->getPlayer() == currentPlayer) {
             return false;
         } else {
