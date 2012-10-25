@@ -15,7 +15,9 @@ class GlPawnRenderer : public IObjectRenderer {
         static const int speed = 3;
         Pawn* pawn;
         int boardSpacePositions[68][4]; //TODO - change
+		int specialPositions[4][7][4];
         int startPositions[4][4][2];
+		int endPoints[4][2];
         int getColorIndex(Color color);
         void calculatePawnPosition();
 		void initialize();

@@ -155,6 +155,60 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
     startPositions[this->getColorIndex(Color::Yellow)][2][1] = 441;
     startPositions[this->getColorIndex(Color::Yellow)][3][0] = 228;
     startPositions[this->getColorIndex(Color::Yellow)][3][1] = 545;
+	
+	endPoints[this->getColorIndex(Color::Blue)][0] = 430;
+	endPoints[this->getColorIndex(Color::Blue)][1] = 295;
+	endPoints[this->getColorIndex(Color::Yellow)][0] = 484;
+	endPoints[this->getColorIndex(Color::Yellow)][1] = 356;
+	endPoints[this->getColorIndex(Color::Green)][0] = 550;
+	endPoints[this->getColorIndex(Color::Green)][1] = 295;
+	endPoints[this->getColorIndex(Color::Red)][0] = 484;
+	endPoints[this->getColorIndex(Color::Red)][1] = 235;
+	
+	posXBoard = 240 - 24;
+	posYBoard = 278;
+	
+	for (int i = 0; i < 7; i++) {
+		posXBoard += 24;
+		specialPositions[this->getColorIndex(Color::Blue)][i][0] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Blue)][i][1] = posYBoard;
+		specialPositions[this->getColorIndex(Color::Blue)][i][2] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Blue)][i][3] = posYBoard + 29;
+	}
+	
+	posXBoard = 470;
+	posYBoard = 48 - 24;
+	
+	for (int i = 0; i < 7; i++) {
+		posYBoard += 24;
+		specialPositions[this->getColorIndex(Color::Red)][i][0] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Red)][i][1] = posYBoard;
+		specialPositions[this->getColorIndex(Color::Red)][i][2] = posXBoard + 29;
+		specialPositions[this->getColorIndex(Color::Red)][i][3] = posYBoard;
+	}
+	
+	posXBoard = 737 + 24;
+	posYBoard = 278;
+	
+	for (int i = 0; i < 7; i++) {
+		posXBoard -= 24;
+		specialPositions[this->getColorIndex(Color::Green)][i][0] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Green)][i][1] = posYBoard;
+		specialPositions[this->getColorIndex(Color::Green)][i][2] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Green)][i][3] = posYBoard + 29;
+	}
+	
+	posXBoard = 469;
+	posYBoard = 545 + 24;
+	
+	for (int i = 0; i < 7; i++) {
+		posYBoard += 24;
+		specialPositions[this->getColorIndex(Color::Green)][i][0] = posXBoard;
+		specialPositions[this->getColorIndex(Color::Green)][i][1] = posYBoard;
+		specialPositions[this->getColorIndex(Color::Green)][i][2] = posXBoard + 29;
+		specialPositions[this->getColorIndex(Color::Green)][i][3] = posYBoard;
+	}
+	
 }
 
 void GlPawnRenderer::calculatePawnPosition() {
@@ -172,6 +226,16 @@ void GlPawnRenderer::calculatePawnPosition() {
             this->pawn->setCoordinates(goal[0], goal[1]);
             return;
         }
+	} else if (this->pawn->getPosition() == -8) {
+		
+		goal[0] = endPoints[this->getColorIndex(this->pawn->getColor())][0];
+		goal[1] = endPoints[this->getColorIndex(this->pawn->getColor())][1];
+		
+	} else if (this->pawn->getPosition() < 0) {
+		
+		goal[0] = specialPositions[this->getColorIndex(this->pawn->getColor())][-(this->pawn->getPosition()+1)][0];
+		goal[1] = specialPositions[this->getColorIndex(this->pawn->getColor())][-(this->pawn->getPosition()+1)][1];
+		
     } else {
         goal[0] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0];
         goal[1] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][1];

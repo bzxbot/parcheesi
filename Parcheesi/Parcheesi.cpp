@@ -106,9 +106,9 @@ bool Parcheesi::isAnimating() {
 void Parcheesi::timer() {
     instance->window->redisplay();
     
-    if (instance->isAnimating()) {
-        return;
-    }
+//    if (instance->isAnimating()) {
+//        return;
+//    }
     
     switch (instance->state) {
         case State::PrepareTurn:
