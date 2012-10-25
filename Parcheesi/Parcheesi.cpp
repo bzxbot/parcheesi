@@ -217,7 +217,7 @@ Parcheesi::Parcheesi() {
     
     PawnSelector* selectorPlus = new PawnSelector(10 + 25, 230 + 25, PawnType::Plus);
     PawnSelector* selectorMinus = new PawnSelector(80 + 25, 230 + 25, PawnType::Minus);
-    PawnSelector* selectorPipe = new PawnSelector(300 + 25, 300 + 25, PawnType::Pipe);
+    PawnSelector* selectorPipe = new PawnSelector(80 + 25, 300 + 25, PawnType::Pipe);
     PawnSelector* selectorBlank = new PawnSelector(10 + 25, 300 + 25, PawnType::Blank);
     
     selectorPlus->setNext(selectorMinus);

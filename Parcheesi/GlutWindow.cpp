@@ -28,7 +28,7 @@ GlutWindow::GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), vo
 void GlutWindow::mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
         std::cout << "Pressed: " << x << ", " << 600-y << "\n";
-        mouseInput->setInput(x, y);
+        mouseInput->setInput(x, 600-y);
     }
 }
 
