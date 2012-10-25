@@ -115,7 +115,7 @@ void Parcheesi::timer() {
             instance->pawnType = PawnType::None;
             instance->selectedPawn = 0;
             instance->playablePawns = instance->prepareTurn();
-            if (instance->currentPlayer->getPlayerType() == Player::Type::Human) {
+            if (instance->currentPlayer->getPlayerType() == Player::Type::Human && instance->getPlayablePawns(instance->diceRoll)->getFirst() != 0) {
 				instance->selectedPawn = NULL;
                 instance->state = State::PlayerInput;
 			}
