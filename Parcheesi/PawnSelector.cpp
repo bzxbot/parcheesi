@@ -3,7 +3,7 @@
 PawnSelector::PawnSelector(int x, int y, PawnType type) {
     this->x = x;
     this->y = y;
-    this->radius = 50;
+    this->radius = 25;
     this->type = type;
     this->active = false;
 }

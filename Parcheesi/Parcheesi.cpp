@@ -211,10 +211,10 @@ Parcheesi::Parcheesi() {
 
     renderer = new GlRenderer();
     
-    PawnSelector* selectorPlus = new PawnSelector(10, 230, PawnType::Plus);
-    PawnSelector* selectorMinus = new PawnSelector(80, 230, PawnType::Minus);
-    PawnSelector* selectorPipe = new PawnSelector(300, 300, PawnType::Pipe);
-    PawnSelector* selectorBlank = new PawnSelector(10, 300, PawnType::Blank);
+    PawnSelector* selectorPlus = new PawnSelector(10 + 25, 230 + 25, PawnType::Plus);
+    PawnSelector* selectorMinus = new PawnSelector(80 + 25, 230 + 25, PawnType::Minus);
+    PawnSelector* selectorPipe = new PawnSelector(300 + 25, 300 + 25, PawnType::Pipe);
+    PawnSelector* selectorBlank = new PawnSelector(10 + 25, 300 + 25, PawnType::Blank);
     
     selectorPlus->setNext(selectorMinus);
     selectorMinus->setNext(selectorPipe);
