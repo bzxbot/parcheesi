@@ -1,4 +1,8 @@
 #include "PawnSelector.h"
+#include "Parcheesi.h"
+#include "Pawn.h"
+#include "PawnNode.h"
+#include "PawnList.h"
 
 PawnSelector::PawnSelector(int x, int y, PawnType type) {
     this->x = x;
@@ -33,7 +37,20 @@ PawnType PawnSelector::getType() {
 }
 
 bool PawnSelector::isActive() {
-    return this->active;
+	PawnList *pawnList = Parcheesi::getInstance()->getPlayablePawns(0);
+	PawnNode *pawnNode = pawnList->getFirst();
+	
+	if (!Parcheesi::getInstance()->isCurrentPlayerHuman())
+		return false;
+	
+	while (pawnNode != 0) {
+		if (pawnNode->getPawn()->getType() == this->getType())
+			return true;
+		pawnNode = pawnNode->getNext();
+	}
+	
+	return false;
+    //return this->active;
 }
 
 void PawnSelector::activate() {

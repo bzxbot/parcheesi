@@ -206,6 +206,10 @@ Color Parcheesi::getColorOfCurrentPlayer() {
 	return this->currentPlayer->getColor();
 }
 
+bool Parcheesi::isCurrentPlayerHuman() {
+	return this->currentPlayer->isHuman();
+}
+
 void Parcheesi::start() {
     window->show();
 }

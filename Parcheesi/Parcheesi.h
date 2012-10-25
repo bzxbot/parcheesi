@@ -65,7 +65,6 @@ class Parcheesi {
         int rollDice();
         int nextPawnPosition(int currentPosition, int diceRoll, int endingPosition);
         void updatePawnSelectors(PawnList* pawnList);
-        PawnList* getPlayablePawns(int diceRoll);
         bool isInputReady();
         static void display();
         static void timer();
@@ -76,7 +75,9 @@ class Parcheesi {
         void enqueueAnimation();
         void dequeueAnimation();
 		int getNumberOfTurns();
+		bool isCurrentPlayerHuman();
 		Color getColorOfCurrentPlayer();
+		PawnList* getPlayablePawns(int diceRoll);
 };
 
 

@@ -55,6 +55,10 @@ bool Player::hasCaptured() {
     return this->captured;
 }
 
+bool Player::isHuman() {
+	return this->type == Type::Human;
+}
+
 Player::Type Player::getPlayerType() {
     return this->type;
 }

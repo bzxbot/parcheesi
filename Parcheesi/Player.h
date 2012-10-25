@@ -23,6 +23,7 @@ class Player {
         void capture();
         void useCapture(Pawn* pawn);
         bool hasCaptured();
+		bool isHuman();
     private:
         Player* nextPlayer;
         Pawn* firstPawn;
