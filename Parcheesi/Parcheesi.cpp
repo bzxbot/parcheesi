@@ -193,8 +193,13 @@ int Parcheesi::rollDice() {
 //    }
 //    
 //    return previousRoll;
+	this->nTurns++;
     return rand()%6+1;
 //    return 5;
+}
+
+int Parcheesi::getNumberOfTurns() {
+	return this->nTurns;
 }
 
 void Parcheesi::start() {

@@ -40,6 +40,7 @@ class Parcheesi {
         static Parcheesi* instance;
     
         int previousRoll = 1;
+		int nTurns = 0;
         int diceRoll;
         int animations = 0;
         PawnType pawnType;
@@ -74,6 +75,7 @@ class Parcheesi {
         static Parcheesi* getInstance();
         void enqueueAnimation();
         void dequeueAnimation();
+		int getNumberOfTurns();
 };
 
 

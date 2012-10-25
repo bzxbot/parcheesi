@@ -168,10 +168,10 @@ void GlPawnRenderer::calculatePawnPosition() {
         goal[0] = boardSpacePositions[this->pawn->getPosition()-1][0];
         goal[1] = boardSpacePositions[this->pawn->getPosition()-1][1];
         
-        if (this->pawn->getPosition() != this->pawn->getPlayer()->getStartingPosition()) {
-            //this->pawn->setCoordinates(goal[0], goal[1]);
+        if (this->pawn->getPosition() == this->pawn->getPlayer()->getStartingPosition() && !Parcheesi::getInstance()->getNumberOfTurns()) {
+            this->pawn->setCoordinates(goal[0], goal[1]);
             //Parcheesi::getInstance()->dequeueAnimation();
-            //return;
+            return;
         }
     } else {
         goal[0] = startPositions[this->getColorIndex(this->pawn->getColor())][this->pawn->getStartPosition()][0];
