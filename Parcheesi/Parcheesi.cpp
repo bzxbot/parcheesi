@@ -263,12 +263,16 @@ Parcheesi::Parcheesi() {
     
     Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 19);
     Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 36);
+	Player* thirdPlayer = new Player(Player::Type::Robot, Color::Green, 58, 53);
+	Player* fourthPlayer = new Player(Player::Type::Human, Color::Yellow, 7, 2);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);
     //    thirdPlayer->setNextPlayer(forthPlayer);
     //    forthPlayer->setNextPlayer(firstPlayer);
-    secondPlayer->setNextPlayer(firstPlayer);
+    secondPlayer->setNextPlayer(thirdPlayer);
+	thirdPlayer->setNextPlayer(fourthPlayer);
+	fourthPlayer->setNextPlayer(firstPlayer);
     
     board = new Board(firstPlayer);
     
