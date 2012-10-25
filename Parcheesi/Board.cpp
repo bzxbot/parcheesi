@@ -76,7 +76,7 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
         bool end = false;
         int i;
         for(i = 1; i <= diceRoll; i++) {
-            if (currentPosition + i == endingPosition) {
+            if (currentPosition + i == endingPosition+1) {
                 end = true;
                 break;
             }
@@ -87,7 +87,8 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
         } else if (end) {
             int remaining = endingPosition - currentPosition;
             
-            return remaining - diceRoll;
+            //return remaining - diceRoll;
+			return Board::End;
         } else {
             int position = currentPosition + diceRoll;
             

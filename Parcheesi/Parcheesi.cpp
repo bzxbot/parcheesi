@@ -231,8 +231,8 @@ Parcheesi::Parcheesi() {
     //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
     //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
     
-    Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 15);
-    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 15);
+    Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 19);
+    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 36);
     
     firstPlayer->setNextPlayer(secondPlayer);
     //    secondPlayer->setNextPlayer(thirdPlayer);

@@ -1,7 +1,10 @@
 #include "GlPawnRenderer.h"
 #include <GLUT/GLUT.h>
 
+//GLuint pawnPlus, pawnMinus, pawnL, pawnOnly;
+
 GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
+	initialize();
     int posXBoard = 597, posYBoard = 571;
     
     this->pawn = pawn;
@@ -176,7 +179,6 @@ void GlPawnRenderer::calculatePawnPosition() {
         
         if (pawnPosition[0] == 0.0 && pawnPosition[1] == 0.0) {
             this->pawn->setCoordinates(goal[0], goal[1]);
-            Parcheesi::getInstance()->dequeueAnimation();
             return;
         }
     }
@@ -212,9 +214,7 @@ void GlPawnRenderer::calculatePawnPosition() {
 
 void GlPawnRenderer::render() {
     float p1[2], p2[2];
-    
-    glBegin(GL_QUADS);
-    
+	
     switch (this->pawn->getColor()) {
         case Color::Blue:
             glColor3f(0.0, 0.0, 1.0);
@@ -236,13 +236,29 @@ void GlPawnRenderer::render() {
     p2[0] = this->pawn->getXCoordinate() + 10;
     p2[1] = this->pawn->getYCoordinate() + 10;
     
-    glVertex2d((int)p1[0], (int)p1[1]);
-    glVertex2d((int)p1[0], (int)p2[1]);
-    glVertex2d((int)p2[0], (int)p2[1]);
-    glVertex2d((int)p2[0], (int)p1[1]);
-    
-    glEnd();
-    glFlush();
+    //glVertex2d((int)p1[0], (int)p1[1]);
+    //glVertex2d((int)p1[0], (int)p2[1]);
+    //glVertex2d((int)p2[0], (int)p2[1]);
+    //glVertex2d((int)p2[0], (int)p1[1]);
+	
+	glViewport(this->pawn->getXCoordinate()-10, this->pawn->getYCoordinate()-10, 20, 20);
+	
+    switch (this->pawn->getType()) {
+        case PawnType::Blank:
+            glCallList(pawnOnly);
+            break;
+        case PawnType::Pipe:
+            glCallList(pawnL);
+            break;
+        case PawnType::Minus:
+            glCallList(pawnMinus);
+            break;
+        case PawnType::Plus:
+            glCallList(pawnPlus);
+            break;
+        case PawnType::None:
+            break;
+    }
 }
 
 IObjectRenderer* GlPawnRenderer::getNext() {
@@ -271,4 +287,78 @@ int GlPawnRenderer::getColorIndex(Color color) {
     }
     
     return index;
+}
+
+void GlPawnRenderer::initialize() {
+    int x = 0, y = 0, r = 10;
+    
+	/*********** pawnOnly **************/
+	pawnOnly = glGenLists(1);
+	glNewList(pawnOnly, GL_COMPILE);
+	cvs.setWindow(-10.0, 10.0, -10.0, 10.0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glLineWidth(1.0);
+	glBegin(GL_POLYGON);
+    for(GLfloat angle = 0; angle <= 360; angle+=360/50){ // Draw the Circle
+        // Calculate and position each vertex
+        glVertex2f(x+r*cos(angle*M_PI/180),y+r*sin(angle*M_PI/180));
+    }
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glColor3f(0,0,0);
+	// ----------- Begin drawing the Circle with TriangleFans
+    glBegin(GL_POLYGON);
+    for(GLfloat angle = 0; angle <= 360; angle+=360/50){ // Draw the Circle
+        // Calculate and position each vertex
+        glVertex2f(x+r*cos(angle*M_PI/180),y+r*sin(angle*M_PI/180));
+    }
+	glEnd();
+	glBegin(GL_LINE_STRIP);
+    for(GLfloat angle = -180; angle <= 70; angle+=360/50){ // Draw the Circle
+        // Calculate and position each vertex
+        glVertex2f(x+r*0.8*cos(angle*M_PI/180),y+r*0.8*sin(angle*M_PI/180));
+    }
+	glEnd();
+	glEndList();
+    
+	/*********** pawnPlus **************/
+	pawnPlus = glGenLists(1);
+	glNewList(pawnPlus, GL_COMPILE);
+    glCallList(pawnOnly);
+    // Draw Plus
+    glLineWidth(2.0);
+    glBegin(GL_LINES);
+    glVertex2f(-5,0);
+    glVertex2f(5,0);
+    glVertex2f(0,-5);
+    glVertex2f(0,5);
+    glEnd();
+    glLineWidth(1.0);
+	glEndList();
+    
+	/*********** pawnMinus **************/
+	pawnMinus = glGenLists(1);
+	glNewList(pawnMinus, GL_COMPILE);
+    glCallList(pawnOnly);
+    // Draw Plus
+    glLineWidth(2.0);
+    glBegin(GL_LINES);
+    glVertex2f(-5,0);
+    glVertex2f(5,0);
+    glEnd();
+    glLineWidth(1.0);
+	glEndList();
+    
+	/*********** pawnL *****************/
+	pawnL = glGenLists(1);
+	glNewList(pawnL, GL_COMPILE);
+    glCallList(pawnOnly);
+    // Draw L
+    glLineWidth(2.0);
+    glBegin(GL_LINES);
+    glVertex2f(0,-5);
+    glVertex2f(0,5);
+    glEnd();
+    glLineWidth(1.0);
+	glEndList();
 }
