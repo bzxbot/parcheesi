@@ -10,7 +10,7 @@
 
 #define PI 3.14159265
 
-GLuint pawnPlus, pawnMinus, pawnL, pawnOnly, board;
+GLuint pawnPlus, pawnMinus, pawnL, pawnOnly, board, dice[7];
 
 //<<<<<<<<<<<<<<<<<<<<<<<< Create Canvas >>>>>>>>>>>
 Canvas cvs(screenWidth, screenHeight, "Parcheesi v1.0");
@@ -421,35 +421,137 @@ void generateBoardDList(){
 	glEndList();
 }
 
-void drawMenuScreen(){
-	/************** BACKGROUND *************/
-	// BLUE
-	cvs.setWindow(0,24,0,24);
-	glViewport(120,20,290,290);
-	drawPlayerPlace(0,0,1);
+void generateDiceDLists(){
+	dice[0] = glGenLists(1);
+	glNewList(dice[0], GL_COMPILE);
 
-	// RED
-	cvs.setWindow(24,0,0,24);
-	glViewport(screenWidth-120-290,20,290,290);
-	drawPlayerPlace(1,0,0);
+	cvs.setWindow(-10.1, 10.0, -10.0, 10.1);
+	
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glBegin(GL_POLYGON);
+		glColor3f(1,1,1);
+		glVertex2f(-10,-8);
+		glVertex2f(-8,-10);
 
-	// YELLOW
-	cvs.setWindow(0,24,24,0);
-	glViewport(120,screenHeight-20-290,290,290);
-	drawPlayerPlace(1,1,0);
+		glVertex2f(8,-10);
+		glVertex2f(10, -8);
 
-	// GREEN
-	cvs.setWindow(24,0,24,0);
-	glViewport(screenWidth-120-290,screenHeight-20-290,290,290);
-	drawPlayerPlace(0,1,0);
-	/************** TITLE ****************/
+		
+		glColor3f(0.9,0.9,0.9);
+		glVertex2f(10,8);
+		glColor3f(1,1,1);
+		glVertex2f(8,10);
 
+		glVertex2f(-8,10);
+		glVertex2f(-10,8);
+	glEnd();
 
-	/************** MENU *****************/
+	glColor3f(0,0,0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glLineWidth(1.0);
+	glBegin(GL_POLYGON);
+		glVertex2f(-10,-8);
+		glVertex2f(-8,-10);
 
+		glVertex2f(8,-10);
+		glVertex2f(10, -8);
+
+		glVertex2f(10,8);
+		glVertex2f(8,10);
+
+		glVertex2f(-8,10);
+		glVertex2f(-10,8);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 1
+	dice[1] = glGenLists(1);
+	glNewList(dice[1], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(0,0);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 1
+	dice[2] = glGenLists(1);
+	glNewList(dice[2], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(6.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(-5,-5);
+		glVertex2f(5,5);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 2
+	dice[3] = glGenLists(1);
+	glNewList(dice[3], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(6.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(-5,-5);
+		glVertex2f(0,0);
+		glVertex2f(5,5);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 4
+	dice[4] = glGenLists(1);
+	glNewList(dice[4], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(6.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(-5,-5);
+		glVertex2f(5,-5);
+		glVertex2f(5,5);
+		glVertex2f(-5,5);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 4
+	dice[5] = glGenLists(1);
+	glNewList(dice[5], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(6.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(-5,-5);
+		glVertex2f(5,-5);
+		glVertex2f(5,5);
+		glVertex2f(-5,5);
+		glVertex2f(0,0);
+	glEnd();
+    glEndList();
+
+	// DRAW DICE 2
+	dice[6] = glGenLists(1);
+	glNewList(dice[6], GL_COMPILE);
+
+	glCallList(dice[0]);
+	glPointSize(6.0);
+	glBegin(GL_POINTS);
+		glColor3f(0,0,0);
+		glVertex2f(-5,-5);
+		glVertex2f(5,0);
+		glVertex2f(5,-5);
+		glVertex2f(5,5);
+		glVertex2f(-5,0);
+		glVertex2f(-5,5);
+	glEnd();
+    glEndList();
 }
 
-//<<<<<<<<<<<<<<<<<<<<<<<< drawCircle >>>>>>>>>>>>>>
 void generatePawnDLists(){
 	int x = 0, y = 0, r = 10;
 
@@ -531,8 +633,7 @@ void display(void)
 	cvs.setBackgroundColor(1.0, 1.0, 1.0);
 	cvs.setColor(1.0, 1.0, 1.0);
 	
-	drawUmassLogo();
-	/*
+	//drawUmassLogo();
 	glCallList(board);
 
 	// Draw Little Pawns
@@ -568,7 +669,10 @@ void display(void)
 	glColor3f(1,0,0);
 	glViewport(80, 300, 50, 50);
 	glCallList(pawnL);
-	*/
+	
+	glViewport(80, 100, 50, 50);
+	glCallList(dice[5]);
+
 	glFlush();
 }
 
@@ -579,7 +683,8 @@ int main(int argc, char** argv) {
 	generatePawnDLists();
 	generateBoardDList();
 	//loadTextureFromFile( "test.bmp" );
-	loadTextureFromFile( "umassd.bmp" );
+	//loadTextureFromFile( "umassd.bmp" );
+	generateDiceDLists();
 	glutDisplayFunc(display);
 	glutMainLoop();
 	return 0;
