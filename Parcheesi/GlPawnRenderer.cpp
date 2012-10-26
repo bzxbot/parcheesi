@@ -202,7 +202,7 @@ GlPawnRenderer::GlPawnRenderer(Pawn* pawn) {
 	posYBoard = 545 + 24;
 	
 	for (int i = 0; i < 7; i++) {
-		posYBoard += 24;
+		posYBoard -= 24;
 		specialPositions[this->getColorIndex(Color::Yellow)][i][0] = posXBoard;
 		specialPositions[this->getColorIndex(Color::Yellow)][i][1] = posYBoard;
 		specialPositions[this->getColorIndex(Color::Yellow)][i][2] = posXBoard + 29;
