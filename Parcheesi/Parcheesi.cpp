@@ -210,16 +210,6 @@ bool Parcheesi::isInputReady() {
 
 void Parcheesi::setSelectedPawn(PawnType type) {
     instance->pawnType = type;
-	
-//	PawnNode *pawnNode = Parcheesi::getInstance()->getPlayablePawns(instance->diceRoll)->getFirst();
-//	
-//	while (pawnNode != 0) {
-//		if (pawnNode->getPawn()->getType() == type) {
-//			Parcheesi::getInstance()->selectedPawn = pawnNode->getPawn();
-//			return;
-//		}
-//		pawnNode = pawnNode->getNext();
-//	}
 }
 
 void Parcheesi::gameOver() {
@@ -229,16 +219,9 @@ void Parcheesi::gameOver() {
 }
 
 int Parcheesi::rollDice() {
-//    if (previousRoll == 1) {
-//        previousRoll = 3;
-//    } else {
-//        previousRoll = 1;
-//    }
-//    
-//    return previousRoll;
 	this->nTurns++;
+    
     return rand()%6+1;
-//    return 5;
 }
 
 int Parcheesi::getNumberOfTurns() {
