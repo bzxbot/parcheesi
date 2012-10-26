@@ -13,12 +13,14 @@ bool GlutMouseInput::setInput(int x, int y) {
     PawnSelector* pawnSelector = this->first;
     
     while (pawnSelector != 0) {
-        int px = pawnSelector->getX();
-        int py = pawnSelector->getY();
-        int radius = pawnSelector->getRadius();
+        if (pawnSelector->isActive()) {
+            int px = pawnSelector->getX();
+            int py = pawnSelector->getY();
+            int radius = pawnSelector->getRadius();
         
-        if (pow((x - px), 2) + pow((y - py), 2) <= pow(radius, 2)) {
-            inputCallbackFunction(pawnSelector->getType());
+            if (pow((x - px), 2) + pow((y - py), 2) <= pow(radius, 2)) {
+                inputCallbackFunction(pawnSelector->getType());
+            }
         }
         
         pawnSelector = pawnSelector->getNext();

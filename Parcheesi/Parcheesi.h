@@ -58,8 +58,9 @@ class Parcheesi {
     
         bool isAnimating();
         PawnList* prepareTurn();
-        Pawn* selectPawn(PawnList* pawnList);
-        void turn(Pawn* pawn);
+        Pawn* selectFirstPawn(PawnList* pawnList);
+        Pawn* selectPawn(PawnType type);
+        TurnResult* turn(Pawn* pawn);
         bool isGameOver();
         void gameOver();
         int rollDice();

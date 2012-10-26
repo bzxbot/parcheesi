@@ -17,10 +17,13 @@ class GlutWindow {
         static void (*displayFunction)();
         static void clear();
         static GlutMouseInput* mouseInput;
+        static bool timerActive;
+        static bool IsTimerActive();
     public:
         GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), void (*timerFunction)());
         void show();
         void redisplay();
+        void stopTimer();
 };
 
 #endif

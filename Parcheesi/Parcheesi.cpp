@@ -10,10 +10,12 @@ PawnList* Parcheesi::prepareTurn() {
         this->diceRoll = this->rollDice();
     }
     
+    std::cout << this->currentPlayer->getColor() << " Dice roll: " << this->diceRoll << "\n";
+    
     return this->getPlayablePawns(diceRoll);
 }
 
-Pawn* Parcheesi::selectPawn(PawnList* pawnList) {
+Pawn* Parcheesi::selectFirstPawn(PawnList* pawnList) {
     
     if(pawnList->getFirst() == 0) {
         return 0;
@@ -22,20 +24,32 @@ Pawn* Parcheesi::selectPawn(PawnList* pawnList) {
     return pawnList->getFirst()->getPawn();
 }
 
-void Parcheesi::turn(Pawn* pawn) {
+Pawn* Parcheesi::selectPawn(PawnType type) {
+    PawnNode *pawnNode = this->playablePawns->getFirst();
+	
+	while (pawnNode != 0) {
+		if (pawnNode->getPawn()->getType() == type) {
+            return pawnNode->getPawn();
+        }
+		pawnNode = pawnNode->getNext();
+	}
+    
+    return 0;
+}
+
+TurnResult* Parcheesi::turn(Pawn* pawn) {
     
     bool capture = false;
 
     if (pawn != 0) {
         capture = board->movePawn(diceRoll, this->currentPlayer, pawn);
-        
-        std::cout << "Player: " << this->currentPlayer->getColor() << " Dice roll: " << diceRoll << " New position: " << pawn->getPosition() << "\n";
     }
     
-    if (!capture)
+    if (!capture) {
         this->currentPlayer = this->currentPlayer->getNextPlayer();
+    }
     
-    lastTurn = new TurnResult(capture, false);
+    return new TurnResult(capture, false);
 }
 
 Parcheesi* Parcheesi::getInstance() {
@@ -106,41 +120,38 @@ bool Parcheesi::isAnimating() {
 void Parcheesi::timer() {
     instance->window->redisplay();
     
-//    if (instance->isAnimating()) {
-//        return;
-//    }
+    if (instance->isGameOver()) {
+        instance->gameOver();
+    }
     
     switch (instance->state) {
         case State::PrepareTurn:
             instance->pawnType = PawnType::None;
             instance->selectedPawn = 0;
             instance->playablePawns = instance->prepareTurn();
-            if (instance->currentPlayer->getPlayerType() == Player::Type::Human && instance->getPlayablePawns(instance->diceRoll)->getFirst() != 0) {
-				instance->selectedPawn = NULL;
+            if (instance->currentPlayer->getPlayerType() == Player::Type::Human && instance->playablePawns->getFirst() != 0) {
                 instance->state = State::PlayerInput;
 			}
-            else
+            else {
                 instance->state = State::RobotInput;
+            }
             break;
         case State::PlayerInput:
             instance->updatePawnSelectors(instance->playablePawns);
-            if (instance->isInputReady() && instance->selectedPawn != NULL) {
-                //instance->selectedPawn = instance->selectPawn(instance->playablePawns);
+            if (instance->isInputReady()) {
+                instance->selectedPawn = instance->selectPawn(instance->pawnType);
                 instance->state = State::Turn;
             }
             break;
         case State::RobotInput:
-            instance->selectedPawn = instance->selectPawn(instance->playablePawns);
+            instance->selectedPawn = instance->selectFirstPawn(instance->playablePawns);
             instance->state = State::Turn;
             break;
         case State::Turn:
-            instance->turn(instance->selectedPawn);
+            instance->lastTurn = instance->turn(instance->selectedPawn);
             instance->state = State::PrepareTurn;
             break;
     }
-    
-    if (instance->isGameOver())
-        instance->gameOver();
 }
 
 void Parcheesi::updatePawnSelectors(PawnList* pawnList) {
@@ -173,7 +184,24 @@ void Parcheesi::updatePawnSelectors(PawnList* pawnList) {
 }
 
 bool Parcheesi::isGameOver() {
-    return false;
+    Player* player = this->firstPlayer;
+    bool gameOver = true;
+    bool first = true;
+    
+    while (player != this->firstPlayer || first) {
+        Pawn* pawn = player->getFirstPawn();
+        
+        while(pawn != 0) {
+            if (pawn->getPosition() != Board::End)
+                gameOver = false;
+            pawn = pawn->getNextPawn();
+        }
+        
+        player = player->getNextPlayer();
+        first = false;
+    }
+    
+    return gameOver;
 }
 
 bool Parcheesi::isInputReady() {
@@ -183,19 +211,21 @@ bool Parcheesi::isInputReady() {
 void Parcheesi::setSelectedPawn(PawnType type) {
     instance->pawnType = type;
 	
-	PawnNode *pawnNode = Parcheesi::getInstance()->getPlayablePawns(instance->diceRoll)->getFirst();
-	
-	while (pawnNode != 0) {
-		if (pawnNode->getPawn()->getType() == type)
-		{
-			Parcheesi::getInstance()->selectedPawn = pawnNode->getPawn();
-			return;
-		}
-		pawnNode = pawnNode->getNext();
-	}
+//	PawnNode *pawnNode = Parcheesi::getInstance()->getPlayablePawns(instance->diceRoll)->getFirst();
+//	
+//	while (pawnNode != 0) {
+//		if (pawnNode->getPawn()->getType() == type) {
+//			Parcheesi::getInstance()->selectedPawn = pawnNode->getPawn();
+//			return;
+//		}
+//		pawnNode = pawnNode->getNext();
+//	}
 }
 
 void Parcheesi::gameOver() {
+    window->stopTimer();
+    
+    std::cout << "Game Over!";
 }
 
 int Parcheesi::rollDice() {
@@ -207,7 +237,7 @@ int Parcheesi::rollDice() {
 //    
 //    return previousRoll;
 	this->nTurns++;
-    return diceRoll = rand()%6+1;
+    return rand()%6+1;
 //    return 5;
 }
 
@@ -232,7 +262,7 @@ void Parcheesi::start() {
 }
 
 Parcheesi::Parcheesi() {
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(0));
 
     renderer = new GlRenderer();
     
@@ -255,21 +285,12 @@ Parcheesi::Parcheesi() {
     renderer->registerRender(new GlPawnSelectorRenderer(selectorPipe));
     renderer->registerRender(new GlPawnSelectorRenderer(selectorBlank));
     
-    // TODO: Randomize the players.
-    //    Player* firstPlayer = new Player(new PlayerColor(PlayerColor::Color::Blue, 22, 17));
-    //    Player* secondPlayer = new Player(new PlayerColor(PlayerColor::Color::Red, 39, 34));
-    //    Player* thirdPlayer = new Player(new PlayerColor(PlayerColor::Color::Yellow, 5, 68));
-    //    Player* forthPlayer = new Player(new PlayerColor(PlayerColor::Color::Green, 56, 51));
-    
     Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 19);
     Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 36);
 	Player* thirdPlayer = new Player(Player::Type::Robot, Color::Green, 58, 53);
 	Player* fourthPlayer = new Player(Player::Type::Human, Color::Yellow, 7, 2);
     
     firstPlayer->setNextPlayer(secondPlayer);
-    //    secondPlayer->setNextPlayer(thirdPlayer);
-    //    thirdPlayer->setNextPlayer(forthPlayer);
-    //    forthPlayer->setNextPlayer(firstPlayer);
     secondPlayer->setNextPlayer(thirdPlayer);
 	thirdPlayer->setNextPlayer(fourthPlayer);
 	fourthPlayer->setNextPlayer(firstPlayer);

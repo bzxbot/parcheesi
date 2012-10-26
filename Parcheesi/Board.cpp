@@ -4,6 +4,7 @@ Board::Board(Player* player) {
     board = new BoardSpace[Board::Size];
 
     Player* p = player;
+    
     bool first = true;
     
     while (p != player || first) {
@@ -27,12 +28,11 @@ bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
     
         this->board[newIndex].pawnList->add(new PawnNode(pawn));
         
-        if (currentPosition != 0)
+        if (currentPosition != 0) {
             this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
+        }
     
         if (checkCapture(newPosition, pawn, player)) {
-            
-            //this->movePawn(20, player, pawn);
             
             PawnNode* captured = this->board[newIndex].pawnList->getFirst();
             
@@ -75,8 +75,9 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
     } else if (currentPosition > Board::Nest) {
         bool end = false;
         int i;
+        
         for(i = 1; i <= diceRoll; i++) {
-            if (currentPosition + i == endingPosition+1) {
+            if (currentPosition + i == endingPosition + 1) {
                 end = true;
                 break;
             }
@@ -86,6 +87,7 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
             return endingPosition;
         } else if (end) {
             int remaining = endingPosition - currentPosition;
+            
             return remaining - diceRoll;
         } else {
             int position = currentPosition + diceRoll;

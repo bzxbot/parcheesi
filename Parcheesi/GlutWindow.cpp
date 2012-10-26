@@ -4,6 +4,7 @@ void (*GlutWindow::timerFunction)();
 void (*GlutWindow::displayFunction)();
 
 GlutMouseInput* GlutWindow::mouseInput;
+bool GlutWindow::timerActive;
 
 GlutWindow::GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), void (*timerFunction)()) {
     int argc = 0;
@@ -11,6 +12,7 @@ GlutWindow::GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), vo
     GlutWindow::timerFunction = timerFunction;
     GlutWindow::displayFunction = displayFunction;
     GlutWindow::mouseInput = mouseInput;
+    GlutWindow::timerActive = true;
     
     glutInit(&argc, 0);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -27,7 +29,7 @@ GlutWindow::GlutWindow(GlutMouseInput* mouseInput, void (*displayFunction)(), vo
 
 void GlutWindow::mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
-        std::cout << "Pressed: " << x << ", " << 600-y << "\n";
+        //std::cout << "Pressed: " << x << ", " << 600-y << "\n";
         mouseInput->setInput(x, 600-y);
     }
 }
@@ -52,9 +54,18 @@ void GlutWindow::show() {
 
 void GlutWindow::timer(int v) {
     GlutWindow::timerFunction();
-    glutTimerFunc(10, timer, 0);
+    if (GlutWindow::IsTimerActive())
+        glutTimerFunc(10, timer, 0);
 }
 
 void GlutWindow::redisplay() {
     glutPostRedisplay();
+}
+
+bool GlutWindow::IsTimerActive() {
+    return GlutWindow::timerActive;
+}
+
+void GlutWindow::stopTimer() {
+    this->timerActive = false;
 }

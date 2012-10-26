@@ -1,6 +1,6 @@
 #include "TurnResult.h"
 
-TurnResult::TurnResult(bool pawnCatpure, bool sixRoll) {
+TurnResult::TurnResult(bool pawnCapture, bool sixRoll) {
     this->pawnCapture = pawnCapture;
     this->sixRoll = sixRoll;
 }
