@@ -2,6 +2,7 @@
 #include <GL/GL.h>
 #include <GL/glut.h>
 
+#include "RgbImage.h" // NEW INCLUDE
 #include "Canvas.h"
 
 #define screenWidth 800
@@ -13,6 +14,76 @@ GLuint pawnPlus, pawnMinus, pawnL, pawnOnly, board;
 
 //<<<<<<<<<<<<<<<<<<<<<<<< Create Canvas >>>>>>>>>>>
 Canvas cvs(screenWidth, screenHeight, "Parcheesi v1.0");
+
+
+//<<<<<<<<<<<<<<<<<<<<<<<< NEW THINGS >>>>>>>>>>>
+/*
+* Read a texture map from a BMP bitmap file.
+*/
+void loadTextureFromFile(char *filename)
+{    
+   glClearColor (0.0, 0.0, 0.0, 0.0);
+   glShadeModel(GL_FLAT);
+   glEnable(GL_DEPTH_TEST);
+
+   RgbImage theTexMap( filename );
+
+   // Pixel alignment: each row is word aligned (aligned to a 4 byte boundary)
+   //    Therefore, no need to call glPixelStore( GL_UNPACK_ALIGNMENT, ... );
+
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+   gluBuild2DMipmaps(GL_TEXTURE_2D, 3,theTexMap.GetNumCols(), theTexMap.GetNumRows(),
+                GL_RGB, GL_UNSIGNED_BYTE, theTexMap.ImageData() );
+}
+
+/*
+* Draw the texture in the OpenGL graphics window
+*/
+void drawUmassLogo(void)
+{
+	cvs.setWindow(-1.0,1.0,-1.0,1.0);
+	//glViewport(0,0,800,600);
+	glViewport(275,175,250,250);
+	glColor3f(1,1,1);
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   glEnable(GL_TEXTURE_2D);
+   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+   glBegin(GL_QUADS);
+   
+   glTexCoord2f(0.0, 0.0); 
+   glVertex3f(-1.0, -1.0, 0.0);
+   
+   glTexCoord2f(0.0, 1.0); 
+   glVertex3f(-1.0, 1.0, 0.0);
+   
+   glTexCoord2f(1.0, 1.0); 
+   glVertex3f(1.0, 1.0, 0.0);
+   
+   glTexCoord2f(1.0, 0.0); 
+   glVertex3f(1.0, -1.0, 0.0);
+   
+   glEnd();
+    glDisable(GL_TEXTURE_2D);
+
+   	cvs.setWindow(-1.0,1.0,-1.0,1.0);
+	glViewport(0,0,800,600);
+	glColor3f(1,1,1);
+	glBegin(GL_QUADS);
+
+	glVertex3f(-1.0, -1.0, 0.0);
+	glVertex3f(-1.0, 1.0, 0.0);
+	glVertex3f(1.0, 1.0, 0.0);
+	glVertex3f(1.0, -1.0, 0.0);
+   
+	glEnd();
+}
+
+//<<<<<<<<<<<<<<<<<<<<<<<< END OF NEW THINGS >>>>>>>>>>>
+
 
 void drawPlayerPlace(float r, float g, float b){
 	// Background Polygon
@@ -460,8 +531,8 @@ void display(void)
 	cvs.setBackgroundColor(1.0, 1.0, 1.0);
 	cvs.setColor(1.0, 1.0, 1.0);
 	
-//	drawMenuScreen();
-	
+	drawUmassLogo();
+	/*
 	glCallList(board);
 
 	// Draw Little Pawns
@@ -497,7 +568,7 @@ void display(void)
 	glColor3f(1,0,0);
 	glViewport(80, 300, 50, 50);
 	glCallList(pawnL);
-
+	*/
 	glFlush();
 }
 
@@ -507,6 +578,8 @@ int main(int argc, char** argv) {
 	// Window is opened in the Canvas constructor
 	generatePawnDLists();
 	generateBoardDList();
+	//loadTextureFromFile( "test.bmp" );
+	loadTextureFromFile( "umassd.bmp" );
 	glutDisplayFunc(display);
 	glutMainLoop();
 	return 0;
