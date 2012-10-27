@@ -10,6 +10,7 @@
 #include "GlutMouseInput.h"
 #include "PawnSelector.h"
 #include "GlPawnSelectorRenderer.h"
+#include "GlDiceRenderer.h"
 
 #include "iostream"
 #include <time.h>
@@ -20,6 +21,13 @@ class GlRenderer;
 class Player;
 class PawnList;
 class GlutWindow;
+
+enum State {
+	PrepareTurn,
+	PlayerInput,
+	RobotInput,
+	Turn
+};
 
 class Parcheesi {
     private:
@@ -37,7 +45,7 @@ class Parcheesi {
         Pawn* selectedPawn;
         PawnSelector* pawnSelector;
     
-        static Parcheesi* instance;
+		static Parcheesi* instance;
     
 		int nTurns = 0;
         int diceRoll;
@@ -46,14 +54,7 @@ class Parcheesi {
     
         static const int NewPawnDiceRoll = 5;
     
-        enum State {
-            PrepareTurn,
-            PlayerInput,
-            RobotInput,
-            Turn
-        };
-    
-        State state = State::PrepareTurn;
+		State state = State::PrepareTurn;
     
         bool isAnimating();
         PawnList* prepareTurn();
@@ -69,16 +70,18 @@ class Parcheesi {
         static void display();
         static void timer();
         static void setSelectedPawn(PawnType type);
-    public:
+	public:
         void start();
         static Parcheesi* getInstance();
         void enqueueAnimation();
         void dequeueAnimation();
 		int getNumberOfTurns();
 		int lastDiceRoll();
+		State getState();
 		bool isCurrentPlayerHuman();
 		Color getColorOfCurrentPlayer();
 		PawnList* getPlayablePawns(int diceRoll);
+		bool hasPawnInPosition(int position);
 };
 
 

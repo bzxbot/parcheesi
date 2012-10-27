@@ -219,8 +219,14 @@ void GlPawnRenderer::calculatePawnPosition() {
     pawnPosition[1] = this->pawn->getYCoordinate();
     
     if (this->pawn->getPosition() >= 1 && this->pawn->getPosition() <= Board::Size) {
-        goal[0] = boardSpacePositions[this->pawn->getPosition()-1][0];
-        goal[1] = boardSpacePositions[this->pawn->getPosition()-1][1];
+		
+//		if (Parcheesi::getInstance()->hasPawnInPosition(this->pawn->getPosition())) {
+			goal[0] = boardSpacePositions[this->pawn->getPosition()-1][0];
+			goal[1] = boardSpacePositions[this->pawn->getPosition()-1][1];
+//		} else {
+//			goal[0] = boardSpacePositions[this->pawn->getPosition()-1][2];
+//			goal[1] = boardSpacePositions[this->pawn->getPosition()-1][3];
+//		}
         
         if (this->pawn->getPosition() == this->pawn->getPlayer()->getStartingPosition() && !Parcheesi::getInstance()->getNumberOfTurns()) {
             this->pawn->setCoordinates(goal[0], goal[1]);

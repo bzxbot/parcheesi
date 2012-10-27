@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Parcheesi/GlPawnRenderer.cpp"
-         timestampString = "372888224.437957"
+         timestampString = "372987774.264565"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "269"
-         endingLineNumber = "269"
+         startingLineNumber = "275"
+         endingLineNumber = "275"
          landmarkName = "GlPawnRenderer::calculatePawnPosition()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,6 +65,19 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "211"
          endingLineNumber = "211">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Parcheesi/GlDiceRenderer.cpp"
+         timestampString = "372989549.184849"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
+         landmarkName = "GlDiceRenderer::getNext()"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

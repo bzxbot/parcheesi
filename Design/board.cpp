@@ -670,7 +670,6 @@ void display(void)
 	glViewport(80, 300, 50, 50);
 	glCallList(pawnL);
 	
-	glViewport(80, 100, 50, 50);
 	glCallList(dice[5]);
 
 	glFlush();

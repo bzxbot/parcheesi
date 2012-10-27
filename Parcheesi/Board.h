@@ -13,7 +13,7 @@ class Board {
     private:
         Player* player;
         BoardSpace* board;
-        int specialSpaces[12] = { 6, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68 };
+        int specialSpaces[12] = { 2, 7, 14, 19, 24, 31, 36, 41, 48, 53, 58, 65};
         AnimationQueue* animationQueue = new AnimationQueue();
     public:
         static const int Size = 68;
@@ -24,6 +24,7 @@ class Board {
         bool checkCapture(int position, Pawn* pawn, Player* currentPlayer);
         bool canAddNewPawn(int startingPosition);
         int nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition);
+		bool hasPawnAtIndex(int index);
 };
 
 #endif

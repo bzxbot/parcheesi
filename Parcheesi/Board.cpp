@@ -42,7 +42,9 @@ bool Board::movePawn(int diceRoll, Player* player, Pawn *pawn) {
             
             return true;
         }
-    }
+    } else if (newPosition < Board::Nest && currentPosition > Board::Nest) {
+		this->board[currentIndex].pawnList->remove(new PawnNode(pawn));
+	}
     
     return false;
 }
@@ -69,6 +71,12 @@ bool Board::checkCapture(int position, Pawn* pawn, Player* currentPlayer) {
     return false;
 }
 
+bool Board::hasPawnAtIndex(int index) {
+	if (this->board[index].pawnList->getFirst())
+		return true;
+	return false;
+}
+
 int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosition, int endingPosition) {
     if (currentPosition == Board::Nest) {
         return startingPosition;
@@ -77,17 +85,22 @@ int Board::nextPawnPosition(int diceRoll, int currentPosition, int startingPosit
         int i;
         int p = currentPosition;
         
-        for(i = 1; i <= diceRoll; i++) {
-            p = p + i > Board::Size ? p + i - Board::Size : p + i;
-            if (p == endingPosition) {
-                end = true;
-                break;
-            }
-        }
+		if (p == endingPosition)
+			end = true;
+		else
+			for(i = 1; i <= diceRoll; i++) {
+				p = p + 1 > Board::Size ? p + 1 - Board::Size : p + 1;
+				if (p == endingPosition) {
+					end = true;
+					break;
+				}
+			}
         
         if (end && i == diceRoll) {
             return endingPosition;
         } else if (end) {
+			if (currentPosition > endingPosition)
+				currentPosition = currentPosition - Board::Size;
             int remaining = endingPosition - currentPosition;
             int finalPosition = remaining - diceRoll;
             if (finalPosition < Board::End)

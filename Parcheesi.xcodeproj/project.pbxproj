@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFD605CB163B58DF0083BC77 /* GlDiceRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFD605C9163B58DF0083BC77 /* GlDiceRenderer.cpp */; };
 		D124964816334CB100C38933 /* GlPawnRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D124964616334CB100C38933 /* GlPawnRenderer.cpp */; };
 		D12DD3F0162CF57E00470DCD /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3EF162CF57E00470DCD /* Main.cpp */; };
 		D12DD3F4162CF6FC00470DCD /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D12DD3F2162CF6FC00470DCD /* Player.cpp */; };
@@ -45,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		AF6C84B21634EC870096E8F3 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		AFD605C9163B58DF0083BC77 /* GlDiceRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlDiceRenderer.cpp; sourceTree = "<group>"; };
+		AFD605CA163B58DF0083BC77 /* GlDiceRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlDiceRenderer.h; sourceTree = "<group>"; };
 		D124964616334CB100C38933 /* GlPawnRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlPawnRenderer.cpp; sourceTree = "<group>"; };
 		D124964716334CB100C38933 /* GlPawnRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlPawnRenderer.h; sourceTree = "<group>"; };
 		D12DD3EF162CF57E00470DCD /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				D124964616334CB100C38933 /* GlPawnRenderer.cpp */,
 				D18E1B541638839000718FAA /* GlutMouseInput.cpp */,
 				D18E1B5A1638909400718FAA /* GlPawnSelectorRenderer.cpp */,
+				AFD605C9163B58DF0083BC77 /* GlDiceRenderer.cpp */,
+				AFD605CA163B58DF0083BC77 /* GlDiceRenderer.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				D18E1B531638823500718FAA /* PawnSelector.cpp in Sources */,
 				D18E1B561638839100718FAA /* GlutMouseInput.cpp in Sources */,
 				D18E1B5C1638909500718FAA /* GlPawnSelectorRenderer.cpp in Sources */,
+				AFD605CB163B58DF0083BC77 /* GlDiceRenderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

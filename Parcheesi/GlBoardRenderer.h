@@ -15,6 +15,7 @@ class GlBoardRenderer : public IObjectRenderer {
         void drawVertical(float r, float g, float b);
         void drawHorizontal(float r, float g, float b);
         void drawSingleSpot(float r, float g, float b);
+		void drawPlayerPlace(float r, float g, float b);
     public:
         GlBoardRenderer(Board* board);
         virtual IObjectRenderer* getNext();

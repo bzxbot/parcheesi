@@ -236,8 +236,16 @@ int Parcheesi::lastDiceRoll() {
 	return diceRoll;
 }
 
+State Parcheesi::getState() {
+	return this->state;
+}
+
 bool Parcheesi::isCurrentPlayerHuman() {
 	return this->currentPlayer->isHuman();
+}
+
+bool Parcheesi::hasPawnInPosition(int position) {
+	return this->board->hasPawnAtIndex(position-1);
 }
 
 void Parcheesi::start() {
@@ -267,6 +275,13 @@ Parcheesi::Parcheesi() {
     renderer->registerRender(new GlPawnSelectorRenderer(selectorMinus));
     renderer->registerRender(new GlPawnSelectorRenderer(selectorPipe));
     renderer->registerRender(new GlPawnSelectorRenderer(selectorBlank));
+	
+	renderer->registerRender(new GlDiceRenderer(1));
+	renderer->registerRender(new GlDiceRenderer(2));
+	renderer->registerRender(new GlDiceRenderer(3));
+	renderer->registerRender(new GlDiceRenderer(4));
+	renderer->registerRender(new GlDiceRenderer(5));
+	renderer->registerRender(new GlDiceRenderer(6));
     
     Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 19);
     Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 36);
