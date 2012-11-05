@@ -148,6 +148,7 @@
 				D18E1B58163884F000718FAA /* PawnType.h */,
 				D18E1B551638839000718FAA /* GlutMouseInput.h */,
 				D18E1B5B1638909400718FAA /* GlPawnSelectorRenderer.h */,
+				AFD605CA163B58DF0083BC77 /* GlDiceRenderer.h */,
 				D12DD3EF162CF57E00470DCD /* Main.cpp */,
 				D180BF0C162CECDF00AF873D /* Parcheesi.cpp */,
 				D180BF0F162CECEC00AF873D /* Board.cpp */,
@@ -167,7 +168,6 @@
 				D18E1B541638839000718FAA /* GlutMouseInput.cpp */,
 				D18E1B5A1638909400718FAA /* GlPawnSelectorRenderer.cpp */,
 				AFD605C9163B58DF0083BC77 /* GlDiceRenderer.cpp */,
-				AFD605CA163B58DF0083BC77 /* GlDiceRenderer.h */,
 			);
 			path = Parcheesi;
 			sourceTree = "<group>";
