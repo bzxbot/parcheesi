@@ -10,8 +10,6 @@ PawnList* Parcheesi::prepareTurn() {
         this->diceRoll = this->rollDice();
     }
     
-    std::cout << this->currentPlayer->getColor() << " Dice roll: " << this->diceRoll << "\n";
-    
     return this->getPlayablePawns(diceRoll);
 }
 
@@ -284,8 +282,8 @@ Parcheesi::Parcheesi() {
 	renderer->registerRender(new GlDiceRenderer(6));
     
     Player* firstPlayer = new Player(Player::Type::Human, Color::Blue, 24, 19);
-    Player* secondPlayer = new Player(Player::Type::Robot, Color::Red, 41, 36);
-	Player* thirdPlayer = new Player(Player::Type::Robot, Color::Green, 58, 53);
+    Player* secondPlayer = new Player(Player::Type::Human, Color::Red, 41, 36);
+	Player* thirdPlayer = new Player(Player::Type::Human, Color::Green, 58, 53);
 	Player* fourthPlayer = new Player(Player::Type::Human, Color::Yellow, 7, 2);
     
     firstPlayer->setNextPlayer(secondPlayer);

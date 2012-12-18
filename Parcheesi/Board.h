@@ -14,7 +14,6 @@ class Board {
         Player* player;
         BoardSpace* board;
         int specialSpaces[12] = { 2, 7, 14, 19, 24, 31, 36, 41, 48, 53, 58, 65};
-        AnimationQueue* animationQueue = new AnimationQueue();
     public:
         static const int Size = 68;
         static const int End = -8;

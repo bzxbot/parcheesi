@@ -1,6 +1,8 @@
 #ifndef Parcheesi_Header
 #define Parcheesi_Header
 
+#include <time.h>
+
 #include "Board.h"
 #include "PawnList.h"
 #include "GlutWindow.h"
@@ -11,10 +13,6 @@
 #include "PawnSelector.h"
 #include "GlPawnSelectorRenderer.h"
 #include "GlDiceRenderer.h"
-
-#include "iostream"
-#include <time.h>
-#include <stdio.h>
 
 class Board;
 class GlRenderer;
