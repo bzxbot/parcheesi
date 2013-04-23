@@ -48,7 +48,7 @@ void Player::capture() {
 
 void Player::useCapture(Pawn* pawn) {
     this->captured = false;
-    pawn->setPosition(pawn->getPosition()+20);
+    pawn->setPosition(pawn->getPosition() + 20);
 }
 
 bool Player::hasCaptured() {
