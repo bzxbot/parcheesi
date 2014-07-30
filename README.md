@@ -9,7 +9,7 @@ It was created as a project for a Computer Graphics class.
 
 Documentation
 -------------
-As of know, the code is the only documentation.
+As of now, the code is the only documentation.
 
 Installation
 ------------
