@@ -1,5 +1,5 @@
 #ifndef Animation_Header
-#define Animation_Heaer
+#define Animation_Header
 
 class Animation {
     public:

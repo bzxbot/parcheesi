@@ -82,6 +82,4 @@ class Parcheesi {
 		bool hasPawnInPosition(int position);
 };
 
-
-
 #endif
