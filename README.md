@@ -17,4 +17,4 @@ Download the project files and compile using XCode.
 
 Authors
 -------
-This was created by Bernardo Botelho, Thiago Rodrigues de Paula and Nicholas Mizoguchi.
+Bernardo Botelho, Thiago Rodrigues de Paula and Nicholas Mizoguchi.
